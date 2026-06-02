@@ -1,10 +1,10 @@
-import Navbar from "./components/Navbar";
-import HeroSection from "./components/HeroSection";
-import FeaturesSection from "./components/FeaturesSection";
-import ProcessSection from "./components/ProcessSection";
-import TestimonialsSection from "./components/TestimonialsSection";
-import DownloadCTA from "./components/DownloadCTA";
-import Footer from "./components/Footer";
+import Navbar from "../components/Navbar";
+import HeroSection from "../components/HeroSection";
+import FeaturesSection from "../components/features-section-demo-2";
+import ProcessSection from "../components/ProcessSection";
+import TestimonialsSection from "../components/TestimonialsSection";
+import DownloadCTA from "../components/DownloadCTA";
+import Footer from "../components/Footer";
 
 const jsonLd = {
   "@context": "https://schema.org",

@@ -1,13 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FFF8F5;
-  --foreground: #111111;
+  --background: #00111C;
+  --foreground: #EAF2F9;
+  --ink-black: #00111C;
+  --ink-black-2: #001523;
+  --ink-black-3: #001A2C;
+  --deep-space-blue: #002137;
+  --deep-space-blue-2: #00253E;
+  --deep-space-blue-3: #002945;
+  --deep-space-blue-4: #002E4E;
+  --deep-space-blue-5: #003356;
+  --yale-blue: #003A61;
+  --yale-blue-2: #00406C;
+  /* Derived: readable accent tones for marks/text on dark surfaces */
+  --accent: #4C9BE0;
+  --text-muted: #93A7B8;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-ink-black: var(--ink-black);
+  --color-ink-black-2: var(--ink-black-2);
+  --color-ink-black-3: var(--ink-black-3);
+  --color-deep-space-blue: var(--deep-space-blue);
+  --color-deep-space-blue-2: var(--deep-space-blue-2);
+  --color-deep-space-blue-3: var(--deep-space-blue-3);
+  --color-deep-space-blue-4: var(--deep-space-blue-4);
+  --color-deep-space-blue-5: var(--deep-space-blue-5);
+  --color-yale-blue: var(--yale-blue);
+  --color-yale-blue-2: var(--yale-blue-2);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -72,8 +96,15 @@ html {
   to   { transform: translateY(0);     opacity: 1; }
 }
 
+/* Showcase floating tiles — varied amplitudes for natural drift */
+@keyframes scFloat1 { 0%, 100% { transform: translateY(0px); }  50% { transform: translateY(-12px); } }
+@keyframes scFloat2 { 0%, 100% { transform: translateY(0px); }  50% { transform: translateY(10px); } }
+@keyframes scFloat3 { 0%, 100% { transform: translateY(0px); }  50% { transform: translateY(-8px); } }
+@keyframes scFloat4 { 0%, 100% { transform: translateY(0px); }  50% { transform: translateY(14px); } }
+
 body {
-  background: var(--background);
+  background: linear-gradient(180deg, #00111C 0%, #001523 50%, #001A2C 100%);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -85,6 +116,7 @@ body {
 [style*="floatUp"],
 [style*="floatDown"],
 [style*="floatSm"],
+[style*="scFloat"],
 [style*="heroPhoneEnter"],
 [style*="scrollDot"] {
   will-change: transform;

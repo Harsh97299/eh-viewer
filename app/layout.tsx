@@ -64,12 +64,17 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: "/launcher_icon-web.svg",
+    shortcut: "/launcher_icon-web.svg",
+    apple: "/launcher_icon-web.svg",
+  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#E63946",
+  themeColor: "#00111C",
 };
 
 export default function RootLayout({
@@ -79,7 +84,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${geist.variable} h-full antialiased`}>
-      <body className="min-h-full bg-[#FFF8F5]">{children}</body>
+      <body className="min-h-full bg-white">{children}</body>
     </html>
   );
 }

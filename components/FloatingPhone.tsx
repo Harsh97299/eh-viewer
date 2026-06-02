@@ -6,7 +6,7 @@ export default function FloatingPhone() {
       className="relative flex-shrink-0"
       style={{ animation: 'floatY14 4.5s ease-in-out infinite' }}
     >
-      <div className="absolute inset-0 bg-[#E63946]/25 blur-[60px] scale-90 rounded-full -z-10" />
+      <div className="absolute inset-0 bg-[#4C9BE0]/20 blur-[60px] scale-90 rounded-full -z-10" />
       <PhoneMockup size="sm" />
     </div>
   )

@@ -4,16 +4,16 @@ import FloatingPhone from './FloatingPhone'
 
 export default function DownloadCTA() {
   return (
-    <section id="download" className="py-16 px-6 bg-[#FFF8F5]">
+    <section id="download" className="py-16 px-6 bg-[#00111C]">
       <div className="max-w-6xl mx-auto">
         <AnimateIn>
           <div
-            className="relative rounded-[36px] overflow-hidden
-                       bg-gradient-to-br from-[#1A0808] via-[#3A0A0A] to-[#0E0404] p-10 md:p-16"
+            className="relative rounded-[36px] overflow-hidden border border-[#003356]
+                       bg-gradient-to-br from-[#002137] via-[#00253E] to-[#001523] p-10 md:p-16"
           >
             {/* Ambient glows */}
-            <div className="absolute -top-20 left-1/3 w-72 h-72 rounded-full bg-[#E63946]/25 blur-[90px] pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 w-56 h-56 rounded-full bg-[#C81D25]/30 blur-[70px] pointer-events-none" />
+            <div className="absolute -top-20 left-1/3 w-72 h-72 rounded-full bg-[#4C9BE0]/20 blur-[90px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-56 h-56 rounded-full bg-[#003A61]/40 blur-[70px] pointer-events-none" />
 
             {/* Decorative dot grid */}
             <div className="absolute top-8 right-10 grid grid-cols-5 gap-2.5 opacity-[0.15] pointer-events-none">
@@ -29,12 +29,12 @@ export default function DownloadCTA() {
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
               {/* Text side */}
               <div className="text-center lg:text-left max-w-lg">
-                <p className="text-[#FFB8B8] text-sm font-semibold tracking-[0.12em] uppercase mb-5">
+                <p className="text-[#4C9BE0] text-sm font-semibold tracking-[0.12em] uppercase mb-5">
                   Ready to Start Reading?
                 </p>
                 <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight tracking-tight mb-6">
                   Download{' '}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E63946] to-[#FFB8B8]">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4C9BE0] to-[#EAF2F9]">
                     EhViewer APK
                   </span>
                 </h2>
