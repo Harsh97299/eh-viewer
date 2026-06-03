@@ -1,4 +1,4 @@
-import { Download, BookOpen, Star } from "lucide-react";
+import { Download, BookOpen } from "lucide-react";
 import PhoneMockup from "./PhoneMockup";
 
 type Avatar = {
@@ -66,24 +66,20 @@ export default function HeroSection() {
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-center
-                 pt-28 pb-20 px-6 overflow-hidden bg-[#00111C]"
+                 pt-28 pb-20 px-6 overflow-hidden bg-white"
     >
-      {/* Background ambient glows */}
-      <div
-        className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full
-                      bg-[#4C9BE0]/15 blur-[120px] -z-10 pointer-events-none"
-      />
-      <div
-        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full
-                      bg-[#4C9BE0]/10 blur-[100px] -z-10 pointer-events-none"
-      />
+      {/* Background ambient glows — multicolor */}
+      <div className="absolute top-1/4 left-1/6 w-150 h-150 rounded-full bg-[#4586F3]/20 blur-[140px] -z-10 pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/6 w-120 h-120 rounded-full bg-[#EB4334]/15 blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute top-3/4 left-1/2 w-90 h-90 rounded-full bg-[#FBBD06]/12 blur-[100px] -z-10 pointer-events-none" />
+      <div className="absolute top-1/2 right-1/3 w-75 h-75 rounded-full bg-[#35AA53]/10 blur-[110px] -z-10 pointer-events-none" />
 
       {/* Subtle grid overlay */}
       <div
-        className="absolute inset-0 -z-10 pointer-events-none opacity-[0.025]"
+        className="absolute inset-0 -z-10 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage:
-            "linear-gradient(#4C9BE0 1px, transparent 1px), linear-gradient(90deg, #4C9BE0 1px, transparent 1px)",
+            "linear-gradient(#4586F3 1px, transparent 1px), linear-gradient(90deg, #4586F3 1px, transparent 1px)",
           backgroundSize: "64px 64px",
         }}
       />
@@ -95,7 +91,7 @@ export default function HeroSection() {
           src={a.src}
           alt=""
           className="absolute hidden lg:block w-16 h-16 rounded-full object-cover bg-white
-                     border-[3px] border-white shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
+                     border-[3px] border-white shadow-[0_8px_24px_rgba(0,0,0,0.10)]"
           style={{
             top: a.top,
             left: a.left,
@@ -111,19 +107,19 @@ export default function HeroSection() {
         <div className="text-center lg:text-left max-w-xl w-full lg:flex-1">
         {/* Headline */}
         <h1
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#EAF2F9]
+          className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#202124]
                      leading-[1.08] tracking-[-0.02em] mb-6"
         >
           Read Manga <br className="hidden sm:block" />
           Anytime,{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EAF2F9] via-[#9FC4E4] to-[#4C9BE0]">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4586F3] via-[#35AA53] to-[#EB4334]">
             Anywhere.
           </span>
         </h1>
 
         {/* Subtitle */}
         <p
-          className="text-[#93A7B8] text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
+          className="text-[#5F6368] text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
           style={{ animation: "heroFadeInUp 0.6s ease 0.2s both" }}
         >
           EhViewer brings a huge manga catalog, offline downloads, zoom-perfect
@@ -137,9 +133,9 @@ export default function HeroSection() {
         >
           <a
             href="/download"
-            className="flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#00406C] text-white
+            className="flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#4586F3] text-white
                        font-semibold text-[15px] shadow-[0_8px_32px_rgba(69,134,243,0.3)]
-                       hover:bg-[#003A61] hover:scale-[1.04] active:scale-[0.97]
+                       hover:bg-[#2F6FD6] hover:scale-[1.04] active:scale-[0.97]
                        transition-all duration-200"
           >
             <Download size={18} />
@@ -148,12 +144,12 @@ export default function HeroSection() {
 
           <a
             href="#features"
-            className="flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#001A2C] text-[#EAF2F9]
-                       font-semibold text-[15px] border border-[#00253E]
-                       shadow-[0_4px_20px_rgba(0,0,0,0.07)] hover:border-[#4C9BE0]
+            className="flex items-center gap-3 px-7 py-3.5 rounded-full bg-white text-[#202124]
+                       font-semibold text-[15px] border border-[#E8EAED]
+                       shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:border-[#4586F3]
                        hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
           >
-            <BookOpen size={16} className="text-[#4C9BE0]" />
+            <BookOpen size={16} className="text-[#4586F3]" />
             View Features
           </a>
         </div>
@@ -169,12 +165,12 @@ export default function HeroSection() {
                 key={i}
                 src={src}
                 alt=""
-                className="w-11 h-11 rounded-full border-2 border-white shadow-sm object-cover bg-[#001A2C]"
+                className="w-11 h-11 rounded-full border-2 border-white shadow-sm object-cover bg-[#F1F3F4]"
               />
             ))}
           </div>
-          <p className="text-sm text-[#93A7B8]">
-            <span className="font-bold text-[#EAF2F9]">2M+</span> manga readers
+          <p className="text-sm text-[#5F6368]">
+            <span className="font-bold text-[#202124]">2M+</span> manga readers
             worldwide
           </p>
         </div>
@@ -188,8 +184,8 @@ export default function HeroSection() {
               "heroPhoneEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both",
           }}
         >
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-[#4C9BE0]/20 blur-3xl -z-10 rounded-full" />
-          <div className="absolute inset-0 bg-[#4C9BE0]/20 blur-[60px] scale-75 -z-10 rounded-full" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-[#4586F3]/15 blur-3xl -z-10 rounded-full" />
+          <div className="absolute inset-0 bg-[#4586F3]/10 blur-[60px] scale-75 -z-10 rounded-full" />
           <PhoneMockup />
         </div>
       </div>

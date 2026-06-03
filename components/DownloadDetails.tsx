@@ -122,19 +122,19 @@ function FileRow({ file, label }: { file: string; label?: string }) {
     <a
       href={`/downloads/${file}`}
       download
-      className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-[#001A2C] border border-[#00253E]
-                 hover:border-[#003356] hover:bg-[#001F33] hover:-translate-y-0.5
+      className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white border border-[#E8EAED]
+                 hover:border-[#4586F3]/40 hover:bg-[#F8F9FA] hover:-translate-y-0.5
                  transition-all duration-300"
     >
-      <span className="flex-shrink-0 grid place-items-center w-9 h-9 rounded-xl bg-[#00253E] text-[#4C9BE0] group-hover:bg-[#003A61] transition-colors">
+      <span className="shrink-0 grid place-items-center w-9 h-9 rounded-xl bg-[#F1F3F4] text-[#4586F3] group-hover:bg-[#4586F3] group-hover:text-white transition-colors">
         <Icon size={18} />
       </span>
-      <span className="font-mono text-[13px] sm:text-[14px] text-[#EAF2F9] break-all leading-tight">
+      <span className="font-mono text-[13px] sm:text-[14px] text-[#202124] break-all leading-tight">
         {label ?? file}
       </span>
       <Download
         size={16}
-        className="ml-auto flex-shrink-0 text-[#4C9BE0] opacity-0 group-hover:opacity-100 transition-opacity"
+        className="ml-auto shrink-0 text-[#4586F3] opacity-0 group-hover:opacity-100 transition-opacity"
       />
     </a>
   )
@@ -152,34 +152,41 @@ function SectionHeading({
   return (
     <div className="mb-8">
       {kicker && (
-        <p className="text-[#4C9BE0] text-xs font-semibold tracking-[0.14em] uppercase mb-3">
+        <p className="text-[#4586F3] text-xs font-semibold tracking-[0.14em] uppercase mb-3">
           {kicker}
         </p>
       )}
-      <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">{title}</h2>
-      {children && <p className="mt-3 text-[#93A7B8] leading-relaxed max-w-2xl">{children}</p>}
+      <h2 className="text-2xl md:text-3xl font-bold text-[#202124] tracking-tight">{title}</h2>
+      {children && <p className="mt-3 text-[#5F6368] leading-relaxed max-w-2xl">{children}</p>}
     </div>
   )
 }
 
 function Card({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-[28px] bg-[#001523] border border-[#00253E] p-7 md:p-9">{children}</div>
+    <div className="rounded-[28px] bg-white border border-[#E8EAED] p-7 md:p-9">{children}</div>
   )
 }
 
 const ISRG_NOTE = (
-  <p className="mt-5 text-[13px] text-[#93A7B8] leading-relaxed">
-    <span className="text-[#4C9BE0]">*</span> Devices running Android 6 need the{' '}
-    <span className="text-[#EAF2F9] font-medium">ISRG Root X1</span> certificate installed.
+  <p className="mt-5 text-[13px] text-[#5F6368] leading-relaxed">
+    <span className="text-[#4586F3]">*</span> Devices running Android 6 need the{' '}
+    <span className="text-[#202124] font-medium">ISRG Root X1</span> certificate installed.
   </p>
 )
+
+// Changelog card colors: green=new, blue=improved, red=fixes
+const changelogConfig = [
+  { icon: Sparkles, title: 'New features',  items: CHANGELOG.new,      color: '#35AA53', bg: '#F0FBF4' },
+  { icon: Wrench,   title: 'Improvements', items: CHANGELOG.improved,  color: '#4586F3', bg: '#EEF3FE' },
+  { icon: Bug,      title: 'Bug fixes',    items: CHANGELOG.fixes,     color: '#EB4334', bg: '#FEF0EE' },
+]
 
 /* -------------------------------------------------------------- section --- */
 
 export default function DownloadDetails() {
   return (
-    <div className="bg-[#00111C]">
+    <div className="bg-white">
       <div className="max-w-6xl mx-auto px-6 pb-24 space-y-20">
         {/* What's new */}
         <AnimateIn>
@@ -188,23 +195,21 @@ export default function DownloadDetails() {
             Color support.
           </SectionHeading>
           <div className="grid md:grid-cols-3 gap-5">
-            {[
-              { icon: Sparkles, title: 'New features', items: CHANGELOG.new },
-              { icon: Wrench, title: 'Improvements', items: CHANGELOG.improved },
-              { icon: Bug, title: 'Bug fixes', items: CHANGELOG.fixes },
-            ].map(({ icon: Icon, title, items }) => (
+            {changelogConfig.map(({ icon: Icon, title, items, color, bg }) => (
               <div
                 key={title}
-                className="rounded-[28px] bg-[#001A2C] border border-[#00253E] p-7"
+                className="rounded-[28px] bg-white border border-[#E8EAED] p-7"
               >
-                <div className="flex items-center gap-2.5 mb-4 text-[#4C9BE0]">
-                  <Icon size={20} />
-                  <h3 className="text-white font-semibold text-lg">{title}</h3>
+                <div className="flex items-center gap-2.5 mb-4" style={{ color }}>
+                  <div className="grid place-items-center w-8 h-8 rounded-xl" style={{ backgroundColor: bg }}>
+                    <Icon size={18} />
+                  </div>
+                  <h3 className="text-[#202124] font-semibold text-lg">{title}</h3>
                 </div>
                 <ul className="space-y-2.5">
                   {items.map((it) => (
-                    <li key={it} className="flex gap-2.5 text-[14px] text-[#93A7B8] leading-relaxed">
-                      <span className="mt-2 h-1 w-1 rounded-full bg-[#4C9BE0] flex-shrink-0" />
+                    <li key={it} className="flex gap-2.5 text-[14px] text-[#5F6368] leading-relaxed">
+                      <span className="mt-2 h-1 w-1 rounded-full shrink-0" style={{ backgroundColor: color }} />
                       {it}
                     </li>
                   ))}
@@ -232,8 +237,8 @@ export default function DownloadDetails() {
         {/* Flavor table */}
         <AnimateIn>
           <SectionHeading title="Flavors & compatibility" />
-          <div className="rounded-[28px] overflow-hidden border border-[#00253E]">
-            <div className="hidden sm:grid grid-cols-[1fr_auto_2fr] gap-4 px-7 py-4 bg-[#001A2C] text-[12px] font-semibold uppercase tracking-wider text-[#4C9BE0]">
+          <div className="rounded-[28px] overflow-hidden border border-[#E8EAED]">
+            <div className="hidden sm:grid grid-cols-[1fr_auto_2fr] gap-4 px-7 py-4 bg-[#F8F9FA] text-[12px] font-semibold uppercase tracking-wider text-[#4586F3]">
               <span>Flavor</span>
               <span>Min Android</span>
               <span>Notes</span>
@@ -242,12 +247,12 @@ export default function DownloadDetails() {
               <div
                 key={f.name}
                 className={`grid sm:grid-cols-[1fr_auto_2fr] gap-1 sm:gap-4 px-7 py-5 ${
-                  i % 2 ? 'bg-[#001523]' : 'bg-[#00111C]'
+                  i % 2 ? 'bg-[#F8F9FA]' : 'bg-white'
                 }`}
               >
-                <span className="text-white font-medium">{f.name}</span>
-                <span className="text-[#EAF2F9] sm:text-center">{f.min}</span>
-                <span className="text-[#93A7B8] text-[14px] leading-relaxed">{f.notes}</span>
+                <span className="text-[#202124] font-medium">{f.name}</span>
+                <span className="text-[#202124] sm:text-center">{f.min}</span>
+                <span className="text-[#5F6368] text-[14px] leading-relaxed">{f.notes}</span>
               </div>
             ))}
           </div>
@@ -258,11 +263,11 @@ export default function DownloadDetails() {
         <AnimateIn>
           <div className="grid lg:grid-cols-2 gap-5">
             <Card>
-              <h3 className="text-xl font-bold text-white mb-6">System Requirements (Android)</h3>
+              <h3 className="text-xl font-bold text-[#202124] mb-6">System Requirements (Android)</h3>
               <ul className="space-y-4">
                 {ANDROID_REQS.map(({ icon: Icon, text }) => (
-                  <li key={text} className="flex items-center gap-3 text-[#93A7B8]">
-                    <span className="grid place-items-center w-9 h-9 rounded-xl bg-[#00253E] text-[#4C9BE0]">
+                  <li key={text} className="flex items-center gap-3 text-[#5F6368]">
+                    <span className="grid place-items-center w-9 h-9 rounded-xl bg-[#F1F3F4] text-[#4586F3]">
                       <Icon size={18} />
                     </span>
                     {text}
@@ -271,11 +276,11 @@ export default function DownloadDetails() {
               </ul>
             </Card>
             <Card>
-              <h3 className="text-xl font-bold text-white mb-6">Installation Guide (Android)</h3>
+              <h3 className="text-xl font-bold text-[#202124] mb-6">Installation Guide (Android)</h3>
               <ol className="space-y-4">
                 {ANDROID_STEPS.map((step, i) => (
-                  <li key={step} className="flex gap-3.5 text-[#93A7B8]">
-                    <span className="grid place-items-center flex-shrink-0 w-7 h-7 rounded-full bg-[#003A61] text-white text-[13px] font-semibold">
+                  <li key={step} className="flex gap-3.5 text-[#5F6368]">
+                    <span className="grid place-items-center shrink-0 w-7 h-7 rounded-full bg-[#4586F3] text-white text-[13px] font-semibold">
                       {i + 1}
                     </span>
                     <span className="leading-relaxed pt-0.5">{step}</span>
@@ -306,7 +311,7 @@ export default function DownloadDetails() {
           <SectionHeading kicker="For developers" title="Mapping, debug symbols & source" />
           <div className="grid lg:grid-cols-2 gap-5">
             <Card>
-              <h3 className="text-lg font-semibold text-white mb-5">Mapping & debug symbols</h3>
+              <h3 className="text-lg font-semibold text-[#202124] mb-5">Mapping & debug symbols</h3>
               <div className="space-y-3">
                 {SYMBOLS.map((f) => (
                   <FileRow key={f} file={f} />
@@ -314,7 +319,7 @@ export default function DownloadDetails() {
               </div>
             </Card>
             <Card>
-              <h3 className="text-lg font-semibold text-white mb-5">Source code</h3>
+              <h3 className="text-lg font-semibold text-[#202124] mb-5">Source code</h3>
               <div className="space-y-3">
                 {SOURCE.map((s) => (
                   <FileRow key={s.file} file={s.file} label={s.label} />
@@ -328,30 +333,30 @@ export default function DownloadDetails() {
         <AnimateIn>
           <SectionHeading kicker="iOS / iPhone" title="EhViewer for iOS" />
           <div className="grid lg:grid-cols-2 gap-5">
-            <div className="rounded-[28px] bg-gradient-to-br from-[#002137] via-[#00253E] to-[#001523] border border-[#003356] p-9 flex flex-col items-center justify-center text-center">
-              <span className="grid place-items-center w-16 h-16 rounded-2xl bg-white/10 text-white mb-5">
+            <div className="rounded-[28px] bg-linear-to-br from-[#EEF3FE] via-[#F8F9FA] to-[#F1F3F4] border border-[#E8EAED] p-9 flex flex-col items-center justify-center text-center">
+              <span className="grid place-items-center w-16 h-16 rounded-2xl bg-[#4586F3]/10 text-[#4586F3] mb-5">
                 <Apple size={30} />
               </span>
-              <p className="text-2xl font-bold text-white mb-2">Launching Soon</p>
-              <p className="text-[#93A7B8] max-w-xs leading-relaxed">
+              <p className="text-2xl font-bold text-[#202124] mb-2">Launching Soon</p>
+              <p className="text-[#5F6368] max-w-xs leading-relaxed">
                 The iOS build is on its way. Read manga on your iPhone or iPad shortly.
               </p>
             </div>
             <Card>
-              <h3 className="text-xl font-bold text-white mb-6">System Requirements (iOS)</h3>
+              <h3 className="text-xl font-bold text-[#202124] mb-6">System Requirements (iOS)</h3>
               <ul className="space-y-3 mb-8">
                 {IOS_REQS.map((r) => (
-                  <li key={r} className="flex gap-2.5 text-[#93A7B8] leading-relaxed">
-                    <span className="mt-2 h-1 w-1 rounded-full bg-[#4C9BE0] flex-shrink-0" />
+                  <li key={r} className="flex gap-2.5 text-[#5F6368] leading-relaxed">
+                    <span className="mt-2 h-1 w-1 rounded-full bg-[#4586F3] shrink-0" />
                     {r}
                   </li>
                 ))}
               </ul>
-              <h3 className="text-xl font-bold text-white mb-6">Installation Guide (iOS)</h3>
+              <h3 className="text-xl font-bold text-[#202124] mb-6">Installation Guide (iOS)</h3>
               <ol className="space-y-3.5">
                 {IOS_STEPS.map((step, i) => (
-                  <li key={step} className="flex gap-3.5 text-[#93A7B8]">
-                    <span className="grid place-items-center flex-shrink-0 w-7 h-7 rounded-full bg-[#003A61] text-white text-[13px] font-semibold">
+                  <li key={step} className="flex gap-3.5 text-[#5F6368]">
+                    <span className="grid place-items-center shrink-0 w-7 h-7 rounded-full bg-[#4586F3] text-white text-[13px] font-semibold">
                       {i + 1}
                     </span>
                     <span className="leading-relaxed pt-0.5">{step}</span>
