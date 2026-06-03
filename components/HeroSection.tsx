@@ -136,7 +136,7 @@ export default function HeroSection() {
           style={{ animation: "heroFadeInUp 0.6s ease 0.28s both" }}
         >
           <a
-            href="#download"
+            href="/download"
             className="flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#00406C] text-white
                        font-semibold text-[15px] shadow-[0_8px_32px_rgba(69,134,243,0.3)]
                        hover:bg-[#003A61] hover:scale-[1.04] active:scale-[0.97]

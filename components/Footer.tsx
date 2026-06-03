@@ -4,28 +4,27 @@ const navGroups = [
   {
     title: 'Product',
     links: [
-      { label: 'Features', href: '#features' },
-      { label: 'How to Install', href: '#process' },
-      { label: 'Reviews', href: '#testimonials' },
-      { label: 'Download', href: '#download' },
+      { label: 'Features', href: '/#features' },
+      { label: 'How to Install', href: '/#process' },
+      { label: 'Reviews', href: '/#testimonials' },
+      { label: 'Download', href: '/download' },
     ],
   },
   {
     title: 'Project',
     links: [
-      { label: 'Source Code', href: '#' },
-      { label: 'Release Notes', href: '#' },
-      { label: 'Report a Bug', href: '#' },
+      { label: 'Source Code', href: '/download' },
+      { label: 'Release Notes', href: 'https://github.com/Ehviewer-Overhauled/Ehviewer/releases' },
+      { label: 'Report a Bug', href: 'https://github.com/Ehviewer-Overhauled/Ehviewer/issues' },
       { label: 'GPLv3 License', href: 'https://www.gnu.org/licenses/gpl-3.0.html' },
     ],
   },
   {
     title: 'Support',
     links: [
-      { label: 'Help Center', href: '#' },
-      { label: 'Contact', href: '#' },
-      { label: 'Privacy', href: '#' },
-      { label: 'Terms', href: '#' },
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Privacy', href: '/privacy-policy' },
     ],
   },
 ]
@@ -44,7 +43,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-14">
           {/* Brand column */}
           <div>
-            <a href="#" className="inline-flex items-center gap-2 mb-5">
+            <a href="/" className="inline-flex items-center gap-2 mb-5">
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#00406C] to-[#003A61]
                               flex items-center justify-center shadow-[0_4px_12px_rgba(69,134,243,0.35)]">
                 <BookOpen size={15} className="text-white" strokeWidth={2.5} />

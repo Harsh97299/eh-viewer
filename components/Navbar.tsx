@@ -4,10 +4,10 @@ import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { label: 'Home',         href: '#'            },
-  { label: 'Features',     href: '#features'    },
-  { label: 'How to Install', href: '#process'     },
-  { label: 'Reviews',      href: '#testimonials' },
+  { label: 'Home',    href: '/'             },
+  { label: 'About',   href: '/about'        },
+  { label: 'Contact', href: '/contact'      },
+  { label: 'Reviews', href: '/#testimonials' },
 ]
 
 export default function Navbar() {
@@ -20,7 +20,7 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
+        <a href="/" className="flex items-center gap-2">
           <img
             src="/launcher_icon-web.svg"
             alt="EhViewer logo"
@@ -44,7 +44,7 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <a
-          href="#download"
+          href="/download"
           className="hidden md:block px-5 py-2.5 rounded-full bg-[#00406C] text-white text-sm
                      font-medium shadow-[0_4px_20px_rgba(69,134,243,0.3)] hover:bg-[#003A61]
                      hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
@@ -81,7 +81,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#download"
+            href="/download"
             onClick={() => setOpen(false)}
             className="w-fit px-6 py-3 rounded-full bg-[#00406C] text-white text-sm font-medium"
           >

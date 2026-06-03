@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import FeaturesSection from "../components/features-section-demo-2";
 import ProcessSection from "../components/ProcessSection";
-import TestimonialsSection from "../components/TestimonialsSection";
+import TestimonialsSection from "../components/AnimatedTestimonialSection";
 import DownloadCTA from "../components/DownloadCTA";
 import Footer from "../components/Footer";
 

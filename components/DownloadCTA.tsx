@@ -39,14 +39,14 @@ export default function DownloadCTA() {
                   </span>
                 </h2>
                 <p className="text-white/55 text-[17px] leading-relaxed mb-10">
-                  Free, open-source manga reader. No signup, no ads, no tracking.
-                  Install in under a minute.
+                  Free, open-source manga reader with Material Design 3 and Dynamic Color.
+                  No signup, no ads, no tracking. Install in under a minute.
                 </p>
 
                 {/* Download buttons */}
                 <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4">
                   <a
-                    href="/ehviewer.apk"
+                    href="/downloads/EhViewer-1.14.6-default-universal.apk"
                     className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white text-[#111111]
                                shadow-[0_8px_32px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.45)]
                                hover:scale-[1.05] active:scale-[0.97] transition-all duration-300 min-w-[200px]"
@@ -74,9 +74,9 @@ export default function DownloadCTA() {
 
                 {/* Version + meta */}
                 <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] text-white/50">
-                  <span><span className="text-white/80 font-semibold">Version</span> 1.9.7</span>
-                  <span><span className="text-white/80 font-semibold">Size</span> 18 MB</span>
-                  <span><span className="text-white/80 font-semibold">Android</span> 7.0+</span>
+                  <span><span className="text-white/80 font-semibold">Version</span> 1.14.6</span>
+                  <span><span className="text-white/80 font-semibold">Released</span> Dec 17, 2025</span>
+                  <span><span className="text-white/80 font-semibold">Android</span> 8.0+</span>
                   <span><span className="text-white/80 font-semibold">License</span> GPLv3</span>
                 </div>
               </div>
