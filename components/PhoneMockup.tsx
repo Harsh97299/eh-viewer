@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const screenshots = [
   "/screenshots/ehviewer-library.webp",
@@ -23,10 +24,21 @@ export default function PhoneMockup({
   const sm = size === "sm";
   const light = frame === "light";
   const [index, setIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState<number | null>(null);
+  const [fading, setFading] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % screenshots.length);
+      setIndex((i) => {
+        const next = (i + 1) % screenshots.length;
+        setPrevIndex(i);
+        setFading(true);
+        setTimeout(() => {
+          setPrevIndex(null);
+          setFading(false);
+        }, 700);
+        return next;
+      });
     }, 2500);
     return () => clearInterval(id);
   }, []);
@@ -48,19 +60,27 @@ export default function PhoneMockup({
         }`}
       />
 
-      {/* Carousel */}
+      {/* Carousel — only current + prev in DOM */}
       <div className="h-full w-full relative">
-        {screenshots.map((src, i) => (
-          <img
-            key={src}
-            src={src}
-            alt={`EhViewer screenshot ${i + 1}`}
-            draggable={false}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-              i === index ? "opacity-100" : "opacity-0"
-            }`}
+        {prevIndex !== null && (
+          <Image
+            key={`prev-${prevIndex}`}
+            src={screenshots[prevIndex]}
+            alt=""
+            fill
+            sizes="270px"
+            className={`object-cover transition-opacity duration-700 ${fading ? "opacity-0" : "opacity-100"}`}
           />
-        ))}
+        )}
+        <Image
+          key={`cur-${index}`}
+          src={screenshots[index]}
+          alt={`EhViewer screenshot ${index + 1}`}
+          fill
+          sizes="270px"
+          priority={index === 0}
+          className="object-cover"
+        />
       </div>
 
       {/* Dots */}

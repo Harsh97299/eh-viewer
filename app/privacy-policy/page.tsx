@@ -9,6 +9,41 @@ export const metadata = {
     "Privacy policy for EhViewer — a free, open-source, privacy-first manga reader for Android. No accounts, no ads, no tracking.",
 };
 
+const SECTIONS = [
+  {
+    title: 'Information we collect',
+    body: 'EhViewer does not require an account and does not collect any personal information. We do not ask for your name, email address, phone number, location, or any other identifying data. The app works entirely without you providing any personal details.',
+  },
+  {
+    title: 'No ads or trackers',
+    body: 'EhViewer contains no advertisements and no third-party tracking or analytics SDKs. Your reading habits, search queries, and browsing history are never sent to any server by the app itself.',
+  },
+  {
+    title: 'Local storage',
+    body: 'Data such as downloaded comics, your favorites list, and reading progress is stored locally on your device only. You control this data — it can be deleted at any time by clearing app data or uninstalling EhViewer.',
+  },
+  {
+    title: 'Third-party content',
+    body: 'EhViewer is a client app that connects to external gallery platforms. When you browse or download content from those platforms, their own privacy policies and terms of service apply. EhViewer has no control over and takes no responsibility for the data practices of those third-party services.',
+  },
+  {
+    title: "Children's privacy",
+    body: 'EhViewer is not intended for use by children under the age of 13. We do not knowingly collect or solicit any data from anyone under 13. Because the app collects no personal information from any user, no additional safeguards specific to children are technically possible or necessary beyond this statement.',
+  },
+  {
+    title: 'Open source & GPLv3',
+    body: 'EhViewer is free software distributed under the GNU General Public License v3. The full source code is publicly available on GitHub so anyone can audit exactly how the app works and confirm these privacy commitments.',
+  },
+  {
+    title: 'Legality',
+    body: "The legality of accessing content through EhViewer depends on the copyright and content distribution laws of your country. EhViewer the app is lawful free software, but users are solely responsible for ensuring their use of content complies with applicable local laws.",
+  },
+  {
+    title: 'Changes to this policy',
+    body: 'If this privacy policy changes materially, the updated version will be published on this page with a revised "Last updated" date. We encourage you to review this page periodically.',
+  },
+]
+
 export default function PrivacyPage() {
   return (
     <>

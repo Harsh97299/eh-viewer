@@ -1,5 +1,6 @@
 import { Download, Settings, Smartphone, BookOpen } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import Image from 'next/image'
 import AnimateIn from './AnimateIn'
 import { ContainerScroll } from '@/components/ui/container-scroll-animation'
 
@@ -123,12 +124,17 @@ export default function ProcessSection() {
 
           {/* Scroll animation visual */}
           <ContainerScroll titleComponent={null}>
-            <img
-              src="/screenshots/screenshots-01.webp"
-              alt="EhViewer app screenshot"
-              className="mx-auto rounded-2xl object-cover h-full w-full object-top"
-              draggable={false}
-            />
+            <div className="relative h-full w-full">
+              <Image
+                src="/screenshots/screenshots-01.webp"
+                alt="EhViewer app screenshot"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="rounded-2xl object-cover object-top"
+                draggable={false}
+              />
+            </div>
           </ContainerScroll>
         </div>
       </div>

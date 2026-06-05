@@ -86,10 +86,13 @@ export default function HeroSection() {
 
       {/* Floating avatars */}
       {avatars.map((a, i) => (
-        <img
+        <Image
           key={i}
           src={a.src}
           alt=""
+          width={64}
+          height={64}
+          loading="lazy"
           className="absolute hidden lg:block w-16 h-16 rounded-full object-cover bg-white
                      border-[3px] border-white shadow-[0_8px_24px_rgba(0,0,0,0.10)]"
           style={{
@@ -163,7 +166,7 @@ export default function HeroSection() {
         >
           <div className="flex -space-x-2">
             {socialProofAvatars.map((src, i) => (
-              <img
+              <Image
                 key={i}
                 src={src}
                 alt=""

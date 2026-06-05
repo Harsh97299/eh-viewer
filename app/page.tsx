@@ -3,6 +3,7 @@ import HeroSection from "../components/HeroSection";
 import FeaturesSection from "../components/features-section-demo-2";
 import ProcessSection from "../components/ProcessSection";
 import TestimonialsSection from "../components/AnimatedTestimonialSection";
+import FaqSection from "../components/FaqSection";
 import DownloadCTA from "../components/DownloadCTA";
 import FAQSection from "../components/FAQSection";
 import { generalFaqs } from "../components/faqData";
@@ -49,6 +50,7 @@ export default function Home() {
         <FeaturesSection />
         <ProcessSection />
         <TestimonialsSection />
+        <FaqSection limit={6} />
         <DownloadCTA />
         <FAQSection items={homeFaqs} viewAllHref="/faq" />
         <Footer />
