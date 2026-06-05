@@ -1,8 +1,105 @@
-import { Download, Smartphone } from 'lucide-react'
+'use client'
+
+import { useState, useEffect } from 'react'
+import { Download, Smartphone, Lock } from 'lucide-react'
 import AnimateIn from './AnimateIn'
 import FloatingPhone from './FloatingPhone'
 
-export default function DownloadCTA() {
+type State = 'idle' | 'counting' | 'ready'
+
+function AndroidButton({ downloadFile }: { downloadFile?: string }) {
+  const [state, setState] = useState<State>('idle')
+  const [seconds, setSeconds] = useState(10)
+  const progress = ((10 - seconds) / 10) * 100
+
+  useEffect(() => {
+    if (state !== 'counting') return
+    if (seconds <= 0) { setState('ready'); return }
+    const id = setTimeout(() => setSeconds((s) => s - 1), 1000)
+    return () => clearTimeout(id)
+  }, [state, seconds])
+
+  if (!downloadFile) {
+    return (
+      <a
+        href="/download"
+        className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-[#4586F3] text-white
+                   shadow-[0_8px_32px_rgba(69,134,243,0.3)] hover:shadow-[0_12px_40px_rgba(69,134,243,0.4)]
+                   hover:bg-[#2F6FD6] hover:scale-[1.05] active:scale-[0.97] transition-all duration-300 min-w-50"
+      >
+        <Download size={24} />
+        <div className="text-left">
+          <p className="text-[10px] text-white/70 font-normal leading-none mb-0.5">Download</p>
+          <p className="font-bold text-[16px] leading-tight">Android APK</p>
+        </div>
+      </a>
+    )
+  }
+
+  if (state === 'counting') {
+    return (
+      <div className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-[#4586F3]/20 border border-[#4586F3]/30
+                      cursor-not-allowed select-none min-w-50">
+        <Lock size={22} className="text-[#4586F3] shrink-0" />
+        <div className="text-left flex-1">
+          <p className="text-[10px] text-[#5F6368] font-normal leading-none mb-0.5">Please wait…</p>
+          <p className="font-bold text-[16px] leading-tight text-[#202124]">Android APK</p>
+        </div>
+        <span className="ml-auto shrink-0 relative flex items-center justify-center w-10 h-10">
+          <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15" fill="none" stroke="#E8EAED" strokeWidth="2.5" />
+            <circle
+              cx="18" cy="18" r="15" fill="none"
+              stroke="#4586F3" strokeWidth="2.5"
+              strokeDasharray="94.25"
+              strokeDashoffset={94.25 - (progress / 100) * 94.25}
+              strokeLinecap="round"
+              style={{ transition: 'stroke-dashoffset 0.9s linear' }}
+            />
+          </svg>
+          <span className="text-[12px] font-bold text-[#4586F3] tabular-nums">{seconds}</span>
+        </span>
+      </div>
+    )
+  }
+
+  if (state === 'ready') {
+    return (
+      <a
+        href={`/downloads/${downloadFile}`}
+        download
+        onClick={() => setState('idle')}
+        className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-[#35AA53] text-white
+                   shadow-[0_8px_32px_rgba(53,170,83,0.35)] hover:shadow-[0_12px_40px_rgba(53,170,83,0.45)]
+                   hover:bg-[#2A9147] hover:scale-[1.05] active:scale-[0.97] transition-all duration-300 min-w-50"
+      >
+        <Download size={24} />
+        <div className="text-left">
+          <p className="text-[10px] text-white/80 font-normal leading-none mb-0.5">Tap to download</p>
+          <p className="font-bold text-[16px] leading-tight">Android APK</p>
+        </div>
+      </a>
+    )
+  }
+
+  return (
+    <button
+      onClick={() => { setSeconds(10); setState('counting') }}
+      className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-[#4586F3] text-white
+                 shadow-[0_8px_32px_rgba(69,134,243,0.3)] hover:shadow-[0_12px_40px_rgba(69,134,243,0.4)]
+                 hover:bg-[#2F6FD6] hover:scale-[1.05] active:scale-[0.97] transition-all duration-300 min-w-50
+                 cursor-pointer"
+    >
+      <Download size={24} />
+      <div className="text-left">
+        <p className="text-[10px] text-white/70 font-normal leading-none mb-0.5">Download</p>
+        <p className="font-bold text-[16px] leading-tight">Android APK</p>
+      </div>
+    </button>
+  )
+}
+
+export default function DownloadCTA({ downloadFile }: { downloadFile?: string }) {
   return (
     <section id="download" className="py-16 px-6 bg-[#F8F9FA]">
       <div className="max-w-6xl mx-auto">
@@ -11,7 +108,7 @@ export default function DownloadCTA() {
             className="relative rounded-[36px] overflow-hidden border border-[#E8EAED]
                        bg-linear-to-br from-[#F8F9FA] via-white to-[#F1F3F4] p-10 md:p-16"
           >
-            {/* Ambient glows — multicolor */}
+            {/* Ambient glows */}
             <div className="absolute -top-20 left-1/3 w-96 h-96 rounded-full bg-[#4586F3]/20 blur-[100px] pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-[#35AA53]/15 blur-[90px] pointer-events-none" />
             <div className="absolute top-1/2 left-10 w-64 h-64 rounded-full bg-[#EB4334]/12 blur-[80px] pointer-events-none" />
@@ -45,20 +142,8 @@ export default function DownloadCTA() {
                   No signup, no ads, no tracking. Install in under a minute.
                 </p>
 
-                {/* Download buttons */}
                 <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4">
-                  <a
-                    href="/downloads/EhViewer-1.14.6-default-universal.apk"
-                    className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-[#4586F3] text-white
-                               shadow-[0_8px_32px_rgba(69,134,243,0.3)] hover:shadow-[0_12px_40px_rgba(69,134,243,0.4)]
-                               hover:bg-[#2F6FD6] hover:scale-[1.05] active:scale-[0.97] transition-all duration-300 min-w-50"
-                  >
-                    <Download size={24} />
-                    <div className="text-left">
-                      <p className="text-[10px] text-white/70 font-normal leading-none mb-0.5">Direct Download</p>
-                      <p className="font-bold text-[16px] leading-tight">Android APK</p>
-                    </div>
-                  </a>
+                  <AndroidButton downloadFile={downloadFile} />
 
                   <a
                     href="#"
@@ -74,7 +159,6 @@ export default function DownloadCTA() {
                   </a>
                 </div>
 
-                {/* Version + meta */}
                 <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] text-[#80868B]">
                   <span><span className="text-[#202124] font-semibold">Version</span> 1.14.6</span>
                   <span><span className="text-[#202124] font-semibold">Released</span> Dec 17, 2025</span>

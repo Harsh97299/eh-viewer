@@ -1,5 +1,3 @@
-import { BookOpen } from 'lucide-react'
-
 const navGroups = [
   {
     title: 'Product',
@@ -48,10 +46,11 @@ export default function Footer() {
           {/* Brand column */}
           <div>
             <a href="/" className="inline-flex items-center gap-2 mb-5">
-              <div className="w-8 h-8 rounded-xl bg-[#4586F3]
-                              flex items-center justify-center shadow-[0_4px_12px_rgba(69,134,243,0.3)]">
-                <BookOpen size={15} className="text-white" strokeWidth={2.5} />
-              </div>
+              <img
+                src="/launcher_icon-web.svg"
+                alt="EhViewer logo"
+                className="w-8 h-8 rounded-xl shadow-[0_4px_12px_rgba(69,134,243,0.25)]"
+              />
               <span className="font-semibold text-[#202124] text-[17px] tracking-tight">EhViewer</span>
             </a>
             <p className="text-sm text-[#5F6368] leading-relaxed max-w-50">

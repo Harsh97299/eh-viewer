@@ -4,6 +4,7 @@ import FeaturesSection from "../components/features-section-demo-2";
 import ProcessSection from "../components/ProcessSection";
 import TestimonialsSection from "../components/AnimatedTestimonialSection";
 import DownloadCTA from "../components/DownloadCTA";
+import FAQSection from "../components/FAQSection";
 import Footer from "../components/Footer";
 
 const jsonLd = {
@@ -45,6 +46,7 @@ export default function Home() {
         <ProcessSection />
         <TestimonialsSection />
         <DownloadCTA />
+        <FAQSection />
         <Footer />
       </main>
     </>

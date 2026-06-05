@@ -1,8 +1,4 @@
 import {
-  Download,
-  FileText,
-  Code,
-  FileArchive,
   Cpu,
   HardDrive,
   MonitorSmartphone,
@@ -14,6 +10,7 @@ import {
   Apple,
 } from 'lucide-react'
 import AnimateIn from './AnimateIn'
+import DownloadFileRow from './DownloadFileRow'
 
 /* ---------------------------------------------------------------- data --- */
 
@@ -109,36 +106,6 @@ const IOS_STEPS = [
 
 /* ----------------------------------------------------------- primitives --- */
 
-function iconFor(file: string) {
-  if (file.endsWith('.txt')) return FileText
-  if (file.endsWith('.zip') || file.endsWith('.tar.gz')) return FileArchive
-  if (file.includes('source')) return Code
-  return Download
-}
-
-function FileRow({ file, label }: { file: string; label?: string }) {
-  const Icon = iconFor(file)
-  return (
-    <a
-      href={`/downloads/${file}`}
-      download
-      className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white border border-[#E8EAED]
-                 hover:border-[#4586F3]/40 hover:bg-[#F8F9FA] hover:-translate-y-0.5
-                 transition-all duration-300"
-    >
-      <span className="shrink-0 grid place-items-center w-9 h-9 rounded-xl bg-[#F1F3F4] text-[#4586F3] group-hover:bg-[#4586F3] group-hover:text-white transition-colors">
-        <Icon size={18} />
-      </span>
-      <span className="font-mono text-[13px] sm:text-[14px] text-[#202124] break-all leading-tight">
-        {label ?? file}
-      </span>
-      <Download
-        size={16}
-        className="ml-auto shrink-0 text-[#4586F3] opacity-0 group-hover:opacity-100 transition-opacity"
-      />
-    </a>
-  )
-}
 
 function SectionHeading({
   kicker,
@@ -227,7 +194,7 @@ export default function DownloadDetails() {
           <Card>
             <div className="grid sm:grid-cols-2 gap-3">
               {DEFAULT_APKS.map((f) => (
-                <FileRow key={f} file={f} />
+                <DownloadFileRow key={f} file={f} />
               ))}
             </div>
             {ISRG_NOTE}
@@ -238,20 +205,20 @@ export default function DownloadDetails() {
         <AnimateIn>
           <SectionHeading title="Flavors & compatibility" />
           <div className="rounded-[28px] overflow-hidden border border-[#E8EAED]">
-            <div className="hidden sm:grid grid-cols-[1fr_auto_2fr] gap-4 px-7 py-4 bg-[#F8F9FA] text-[12px] font-semibold uppercase tracking-wider text-[#4586F3]">
+            <div className="hidden sm:grid grid-cols-[2fr_140px_3fr] px-7 py-4 bg-[#F8F9FA] text-[12px] font-semibold uppercase tracking-wider text-[#4586F3]">
               <span>Flavor</span>
-              <span>Min Android</span>
+              <span className="text-center">Min Android</span>
               <span>Notes</span>
             </div>
             {FLAVORS.map((f, i) => (
               <div
                 key={f.name}
-                className={`grid sm:grid-cols-[1fr_auto_2fr] gap-1 sm:gap-4 px-7 py-5 ${
+                className={`flex flex-col gap-1 sm:grid sm:grid-cols-[2fr_140px_3fr] sm:gap-0 px-7 py-5 ${
                   i % 2 ? 'bg-[#F8F9FA]' : 'bg-white'
                 }`}
               >
                 <span className="text-[#202124] font-medium">{f.name}</span>
-                <span className="text-[#202124] sm:text-center">{f.min}</span>
+                <span className="text-[#5F6368] sm:text-[#202124] text-[13px] sm:text-base sm:text-center">{f.min}</span>
                 <span className="text-[#5F6368] text-[14px] leading-relaxed">{f.notes}</span>
               </div>
             ))}
@@ -299,7 +266,7 @@ export default function DownloadDetails() {
           <Card>
             <div className="grid sm:grid-cols-2 gap-3">
               {MARSHMALLOW_APKS.map((f) => (
-                <FileRow key={f} file={f} />
+                <DownloadFileRow key={f} file={f} />
               ))}
             </div>
             {ISRG_NOTE}
@@ -314,7 +281,7 @@ export default function DownloadDetails() {
               <h3 className="text-lg font-semibold text-[#202124] mb-5">Mapping & debug symbols</h3>
               <div className="space-y-3">
                 {SYMBOLS.map((f) => (
-                  <FileRow key={f} file={f} />
+                  <DownloadFileRow key={f} file={f} />
                 ))}
               </div>
             </Card>
@@ -322,7 +289,7 @@ export default function DownloadDetails() {
               <h3 className="text-lg font-semibold text-[#202124] mb-5">Source code</h3>
               <div className="space-y-3">
                 {SOURCE.map((s) => (
-                  <FileRow key={s.file} file={s.file} label={s.label} />
+                  <DownloadFileRow key={s.file} file={s.file} label={s.label} />
                 ))}
               </div>
             </Card>
