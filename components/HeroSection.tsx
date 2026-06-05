@@ -110,7 +110,7 @@ export default function HeroSection() {
           className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#202124]
                      leading-[1.08] tracking-[-0.02em] mb-6"
         >
-          Read Manga <br className="hidden sm:block" />
+          EhViewer: Read Manga <br className="hidden sm:block" />
           Anytime,{" "}
           <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4586F3] via-[#35AA53] to-[#EB4334]">
             Anywhere.
@@ -122,8 +122,10 @@ export default function HeroSection() {
           className="text-[#5F6368] text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
           style={{ animation: "heroFadeInUp 0.6s ease 0.2s both" }}
         >
-          EhViewer brings a huge manga catalog, offline downloads, zoom-perfect
-          reading, and custom themes to your phone — completely free.
+          Your next favorite manga adventure starts here. EhViewer packs a huge
+          catalog, offline downloads, zoom-perfect reading, and custom themes
+          into one free, open-source app. Warning: may cause accidental
+          all-night reading sessions.
         </p>
 
         {/* CTA buttons */}
@@ -170,8 +172,8 @@ export default function HeroSection() {
             ))}
           </div>
           <p className="text-sm text-[#5F6368]">
-            <span className="font-bold text-[#202124]">2M+</span> manga readers
-            worldwide
+            <span className="font-bold text-[#202124]">2M+</span> readers reading
+            with EhViewer worldwide
           </p>
         </div>
       </div>

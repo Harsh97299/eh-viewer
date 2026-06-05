@@ -4,7 +4,7 @@ const navGroups = [
     links: [
       { label: 'Features', href: '/#features' },
       { label: 'How to Install', href: '/#process' },
-      { label: 'Reviews', href: '/#testimonials' },
+      { label: 'FAQ', href: '/faq' },
       { label: 'Download', href: '/download' },
     ],
   },
@@ -54,7 +54,8 @@ export default function Footer() {
               <span className="font-semibold text-[#202124] text-[17px] tracking-tight">EhViewer</span>
             </a>
             <p className="text-sm text-[#5F6368] leading-relaxed max-w-50">
-              Free, open-source manga reader for Android &amp; iOS.
+              EhViewer — a free, open-source manga reader for Android &amp; iOS,
+              built by the community.
             </p>
           </div>
 

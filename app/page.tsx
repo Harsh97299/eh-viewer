@@ -5,7 +5,11 @@ import ProcessSection from "../components/ProcessSection";
 import TestimonialsSection from "../components/AnimatedTestimonialSection";
 import DownloadCTA from "../components/DownloadCTA";
 import FAQSection from "../components/FAQSection";
+import { generalFaqs } from "../components/faqData";
 import Footer from "../components/Footer";
+
+// Home shows a curated 3 — the full set lives on /faq.
+const homeFaqs = [generalFaqs[0], generalFaqs[1], generalFaqs[3]];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -14,7 +18,7 @@ const jsonLd = {
   applicationCategory: "BookApplication",
   operatingSystem: "Android, iOS",
   description:
-    "Free manga & anime comic reader. Huge catalog, offline downloads, zoom reading, customizable themes, and privacy-first browsing.",
+    "EhViewer is a free, open-source manga & anime comic reader for Android. Huge catalog, offline downloads, zoom reading, customizable themes, and privacy-first browsing.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -46,7 +50,7 @@ export default function Home() {
         <ProcessSection />
         <TestimonialsSection />
         <DownloadCTA />
-        <FAQSection />
+        <FAQSection items={homeFaqs} viewAllHref="/faq" />
         <Footer />
       </main>
     </>

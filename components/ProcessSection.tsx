@@ -61,7 +61,7 @@ export default function ProcessSection() {
             How to Install
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-[#202124] leading-tight tracking-tight max-w-xl">
-            From download to first chapter in{' '}
+            Install EhViewer and reach your first chapter in{' '}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4586F3] to-[#35AA53]">
               under a minute
             </span>

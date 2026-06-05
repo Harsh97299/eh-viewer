@@ -8,9 +8,9 @@ import AnimateIn from "../../components/AnimateIn";
 import FAQSection from "../../components/FAQSection";
 
 export const metadata = {
-  title: "About — EhViewer",
+  title: "About EhViewer — Free Open-Source Manga Reader",
   description:
-    "The story behind EhViewer — a free manga reader built to give enthusiasts worldwide a seamless, user-friendly comic reading experience.",
+    "The story behind EhViewer — a free, open-source manga reader built by the community to give fans worldwide a smooth, friendly reading experience.",
 };
 
 interface Value {
@@ -24,23 +24,23 @@ const values: Value[] = [
   {
     icon: Sparkles,
     color: "#4586F3",
-    title: "Innovation",
+    title: "Discovery",
     description:
-      "We strive to innovate and introduce cutting-edge features to transform how you enjoy manga comics on your phone.",
+      "EhViewer is built to help you find your next favorite series — fresh features that make discovering manga on your phone genuinely fun.",
   },
   {
     icon: Palette,
     color: "#EB4334",
-    title: "User-Centric Design",
+    title: "Reader-First Design",
     description:
-      "Our designs are crafted with the user in mind, ensuring a seamless and intuitive experience for all manga readers.",
+      "Like a perfectly organized manga shelf, EhViewer keeps everything exactly where you need it — a smooth, intuitive experience for every reader.",
   },
   {
     icon: Heart,
     color: "#35AA53",
-    title: "Customer Satisfaction",
+    title: "Community",
     description:
-      "Customer satisfaction is at the core of our operations, driving us to continuously improve and cater to your comic reading needs.",
+      "EhViewer is open source means fans helping fans. Contributors, translators, and maintainers around the world keep it growing.",
   },
 ];
 
@@ -71,20 +71,21 @@ export default function AboutPage() {
               </h1>
 
               <p className="mt-6 text-text-muted leading-relaxed">
-                The EhViewer app is dedicated to offering a seamless and
-                enjoyable manga comic reading experience for manga enthusiasts
-                worldwide. Our user-friendly interface sets us apart in the
-                industry.
+                The internet is more fun when knowledge is shared. EhViewer
+                exists to give manga fans worldwide a smooth, friendly place to
+                read — clean, fast, and free of the clutter that gets in the way
+                of a good story.
               </p>
               <p className="mt-4 text-text-muted leading-relaxed">
-                EhViewer was founded with a vision to elevate the way manga
-                comics are consumed digitally. Our journey began with a passion
-                for enhancing the online comic reading experience.
+                EhViewer started as a passion project and grew into a true
+                open-source effort. Every great manga journey begins with a
+                single chapter, and we wanted that first chapter to feel
+                effortless on any phone.
               </p>
               <p className="mt-4 text-text-muted leading-relaxed">
-                EhViewer has had the privilege of serving a diverse range of
-                readers — from individual manga fans to avid readers looking for
-                a convenient, free mobile manga viewer.
+                Today EhViewer is shaped by passionate contributors, translators,
+                and maintainers around the world — fans helping fans discover the
+                next series worth staying up for.
               </p>
             </AnimateIn>
 
@@ -116,11 +117,11 @@ export default function AboutPage() {
                 What Drives Us
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-                Our Core Values
+                What EhViewer stands for
               </h2>
               <p className="mt-4 text-text-muted leading-relaxed">
-                Discover what guides us in our mission to enhance your manga
-                reading experience.
+                The values that guide every decision behind EhViewer and keep
+                the reading experience fun.
               </p>
             </AnimateIn>
 
@@ -161,11 +162,11 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <AnimateIn>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-                Ready to start reading?
+                Ready for your next reading arc?
               </h2>
               <p className="mt-4 text-text-muted leading-relaxed max-w-xl">
                 Download EhViewer for Android and dive into your next favorite
-                manga — free, with no signup and no ads.
+                manga — free, open source, no signup, no ads.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link

@@ -248,7 +248,7 @@ export default function AnimatedTestimonialSection() {
           Reviews
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-[#202124] leading-tight tracking-tight">
-          Loved by readers everywhere
+          Why fans stick with EhViewer
         </h2>
       </div>
       <StaggerTestimonials />

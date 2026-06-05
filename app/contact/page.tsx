@@ -5,9 +5,9 @@ import AnimateIn from "../../components/AnimateIn";
 import FAQSection from "../../components/FAQSection";
 
 export const metadata = {
-  title: "Contact — EhViewer",
+  title: "Contact EhViewer — Reach the Team & Community",
   description:
-    "Get in touch with the EhViewer project — send us a message or reach the maintainers on GitHub.",
+    "Get in touch with the EhViewer project — send a message or reach the maintainers and community on GitHub.",
 };
 
 // Inline server action keeps this page server-rendered. Structure only for now —
@@ -33,7 +33,7 @@ const githubCards = [
     icon: Bug,
     title: "Report a bug",
     description:
-      "Found something broken? Open an issue with your Android version and steps to reproduce.",
+      "Found something broken in EhViewer? Open an issue with your Android version and steps to reproduce — every report helps the whole community.",
     label: "Open an issue",
     href: "https://github.com/Ehviewer-Overhauled/Ehviewer/issues/new/choose",
   },
@@ -41,7 +41,7 @@ const githubCards = [
     icon: MessageCircle,
     title: "Ask a question",
     description:
-      "Have a question or feature request? Start a thread in GitHub Discussions.",
+      "Have a question or a feature idea for EhViewer? Start a thread in GitHub Discussions and chat with fellow readers.",
     label: "Go to Discussions",
     href: "https://github.com/Ehviewer-Overhauled/Ehviewer/discussions",
   },
@@ -72,8 +72,9 @@ export default function ContactPage() {
                 </span>
               </h1>
               <p className="mt-6 text-text-muted leading-relaxed max-w-xl">
-                EhViewer is an open-source project. Send us a message below, or
-                reach the maintainers directly on GitHub.
+                EhViewer is built by the community, for the community. Send a
+                message below, or reach the maintainers directly on GitHub —
+                feedback, ideas, and bug reports are always welcome.
               </p>
             </AnimateIn>
 
@@ -161,11 +162,11 @@ export default function ContactPage() {
                 Prefer GitHub?
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-                Reach the maintainers
+                Reach the EhViewer maintainers
               </h2>
               <p className="mt-4 text-text-muted leading-relaxed">
-                File issues or start a discussion directly on the project
-                repository.
+                File issues or start a discussion directly on the EhViewer
+                repository — that is where the community lives.
               </p>
             </AnimateIn>
 

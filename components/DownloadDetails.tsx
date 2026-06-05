@@ -157,9 +157,9 @@ export default function DownloadDetails() {
       <div className="max-w-6xl mx-auto px-6 pb-24 space-y-20">
         {/* What's new */}
         <AnimateIn>
-          <SectionHeading kicker="Release 1.14.6 · Dec 17, 2025" title="What's new">
-            A modern EhViewer fork dedicated to high performance, with Material Design 3 and Dynamic
-            Color support.
+          <SectionHeading kicker="Release 1.14.6 · Dec 17, 2025" title="What's new in EhViewer">
+            A modern EhViewer fork built by passionate contributors, tuned for high
+            performance with Material Design 3 and Dynamic Color support.
           </SectionHeading>
           <div className="grid md:grid-cols-3 gap-5">
             {changelogConfig.map(({ icon: Icon, title, items, color, bg }) => (
@@ -188,8 +188,9 @@ export default function DownloadDetails() {
 
         {/* Android downloads — default flavor */}
         <AnimateIn>
-          <SectionHeading kicker="Android" title="EhViewer for Android">
-            Click a build to download EhViewer for Android and enjoy uninterrupted manga reading.
+          <SectionHeading kicker="Android" title="Download EhViewer for Android">
+            Pick a build to download EhViewer for Android and settle in for your next
+            binge-reading arc — smooth, uninterrupted manga reading awaits.
           </SectionHeading>
           <Card>
             <div className="grid sm:grid-cols-2 gap-3">
@@ -306,7 +307,7 @@ export default function DownloadDetails() {
               </span>
               <p className="text-2xl font-bold text-[#202124] mb-2">Launching Soon</p>
               <p className="text-[#5F6368] max-w-xs leading-relaxed">
-                The iOS build is on its way. Read manga on your iPhone or iPad shortly.
+                EhViewer for iOS is on its way. Read manga on your iPhone or iPad shortly.
               </p>
             </div>
             <Card>

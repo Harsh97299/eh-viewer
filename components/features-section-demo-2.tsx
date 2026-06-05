@@ -57,7 +57,7 @@ export default function FeaturesSectionDemo() {
     {
       title: "Free & Open Source",
       description:
-        "Completely free, GPL-licensed, and ad-free. No subscriptions, no paywalls, ever.",
+        "EhViewer is completely free, GPL-licensed, and ad-free. Built by the community, for the community — no subscriptions, no paywalls, ever.",
       icon: <IconCurrencyDollar />,
     },
     {
@@ -77,10 +77,11 @@ export default function FeaturesSectionDemo() {
 
       <div className="max-w-7xl mx-auto px-8 text-center mb-4 relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-[#202124]">
-          Everything you need to read
+          Why readers love EhViewer
         </h2>
         <p className="mt-4 text-base text-[#5F6368] max-w-2xl mx-auto">
-          A full-featured manga reader built for comfort, speed, and privacy.
+          Think of EhViewer as your personal manga command center — built for
+          comfort, speed, and privacy, and powered by the open-source community.
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 py-10 max-w-7xl mx-auto ">

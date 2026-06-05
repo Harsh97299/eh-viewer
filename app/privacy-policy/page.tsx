@@ -4,9 +4,9 @@ import Footer from "../../components/Footer";
 import FAQSection from "../../components/FAQSection";
 
 export const metadata = {
-  title: "Privacy Policy — EhViewer",
+  title: "EhViewer Privacy Policy — Privacy-First Manga Reader",
   description:
-    "Privacy policy for EhViewer — a free, open-source, privacy-first manga reader for Android.",
+    "Privacy policy for EhViewer — a free, open-source, privacy-first manga reader for Android. No accounts, no ads, no tracking.",
 };
 
 export default function PrivacyPage() {

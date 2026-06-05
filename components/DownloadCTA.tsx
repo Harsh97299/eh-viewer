@@ -139,8 +139,9 @@ export default function DownloadCTA({ downloadFile }: { downloadFile?: string })
                   </span>
                 </h2>
                 <p className="text-[#5F6368] text-[17px] leading-relaxed mb-10">
-                  Free, open-source manga reader with Material Design 3 and Dynamic Color.
-                  No signup, no ads, no tracking. Install in under a minute.
+                  Every great manga journey begins with a single chapter. EhViewer is a
+                  free, open-source reader with Material Design 3 and Dynamic Color —
+                  no signup, no ads, no tracking. Install in under a minute.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4">
