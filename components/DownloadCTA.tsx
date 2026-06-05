@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Download, Smartphone, Lock } from 'lucide-react'
+import { Download, Lock } from 'lucide-react'
+import Image from 'next/image'
 import AnimateIn from './AnimateIn'
 import FloatingPhone from './FloatingPhone'
 
@@ -151,7 +152,7 @@ export default function DownloadCTA({ downloadFile }: { downloadFile?: string })
                                border border-[#E8EAED] text-[#5F6368] hover:border-[#4586F3] hover:text-[#202124]
                                hover:scale-[1.05] active:scale-[0.97] transition-all duration-300 min-w-50"
                   >
-                    <Smartphone size={22} />
+                    <Image src="/apple-logo.svg" alt="Apple logo" width={22} height={22} />
                     <div className="text-left">
                       <p className="text-[10px] text-[#80868B] font-normal leading-none mb-0.5">iOS</p>
                       <p className="font-bold text-[16px] leading-tight">Coming Soon</p>

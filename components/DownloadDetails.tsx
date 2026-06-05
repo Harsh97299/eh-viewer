@@ -7,8 +7,8 @@ import {
   Sparkles,
   Wrench,
   Bug,
-  Apple,
 } from 'lucide-react'
+import Image from 'next/image'
 import AnimateIn from './AnimateIn'
 import DownloadFileRow from './DownloadFileRow'
 
@@ -302,7 +302,7 @@ export default function DownloadDetails() {
           <div className="grid lg:grid-cols-2 gap-5">
             <div className="rounded-[28px] bg-linear-to-br from-[#EEF3FE] via-[#F8F9FA] to-[#F1F3F4] border border-[#E8EAED] p-9 flex flex-col items-center justify-center text-center">
               <span className="grid place-items-center w-16 h-16 rounded-2xl bg-[#4586F3]/10 text-[#4586F3] mb-5">
-                <Apple size={30} />
+                <Image src="/apple-logo.svg" alt="Apple logo" width={30} height={30} />
               </span>
               <p className="text-2xl font-bold text-[#202124] mb-2">Launching Soon</p>
               <p className="text-[#5F6368] max-w-xs leading-relaxed">
