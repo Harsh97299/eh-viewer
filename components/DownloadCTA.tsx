@@ -46,14 +46,14 @@ export default function DownloadCTA() {
                 {/* Download buttons */}
                 <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4">
                   <a
-                    href="/downloads/EhViewer-1.14.6-default-universal.apk"
+                    href="/download"
                     className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white text-[#111111]
                                shadow-[0_8px_32px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.45)]
                                hover:scale-[1.05] active:scale-[0.97] transition-all duration-300 min-w-[200px]"
                   >
                     <Download size={24} />
                     <div className="text-left">
-                      <p className="text-[10px] text-[#777777] font-normal leading-none mb-0.5">Direct Download</p>
+                      <p className="text-[10px] text-[#777777] font-normal leading-none mb-0.5">Download</p>
                       <p className="font-bold text-[16px] leading-tight">Android APK</p>
                     </div>
                   </a>

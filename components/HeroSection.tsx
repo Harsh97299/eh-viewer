@@ -1,4 +1,5 @@
-import { Download, BookOpen, Star } from "lucide-react";
+import { Download, BookOpen } from "lucide-react";
+import Image from "next/image";
 import PhoneMockup from "./PhoneMockup";
 
 type Avatar = {
@@ -90,10 +91,13 @@ export default function HeroSection() {
 
       {/* Floating avatars */}
       {avatars.map((a, i) => (
-        <img
+        <Image
           key={i}
           src={a.src}
           alt=""
+          width={64}
+          height={64}
+          loading="lazy"
           className="absolute hidden lg:block w-16 h-16 rounded-full object-cover bg-white
                      border-[3px] border-white shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
           style={{
@@ -165,10 +169,13 @@ export default function HeroSection() {
         >
           <div className="flex -space-x-2">
             {socialProofAvatars.map((src, i) => (
-              <img
+              <Image
                 key={i}
                 src={src}
                 alt=""
+                width={44}
+                height={44}
+                loading="lazy"
                 className="w-11 h-11 rounded-full border-2 border-white shadow-sm object-cover bg-[#001A2C]"
               />
             ))}

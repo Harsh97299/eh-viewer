@@ -3,6 +3,7 @@ import HeroSection from "../components/HeroSection";
 import FeaturesSection from "../components/features-section-demo-2";
 import ProcessSection from "../components/ProcessSection";
 import TestimonialsSection from "../components/AnimatedTestimonialSection";
+import FaqSection from "../components/FaqSection";
 import DownloadCTA from "../components/DownloadCTA";
 import Footer from "../components/Footer";
 
@@ -44,6 +45,7 @@ export default function Home() {
         <FeaturesSection />
         <ProcessSection />
         <TestimonialsSection />
+        <FaqSection limit={6} />
         <DownloadCTA />
         <Footer />
       </main>

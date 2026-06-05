@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const screenshots = [
   "/screenshots/ehviewer-library.webp",
@@ -16,10 +17,21 @@ const screenshots = [
 export default function PhoneMockup({ size = "lg" }: { size?: "sm" | "lg" }) {
   const sm = size === "sm";
   const [index, setIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState<number | null>(null);
+  const [fading, setFading] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % screenshots.length);
+      setIndex((i) => {
+        const next = (i + 1) % screenshots.length;
+        setPrevIndex(i);
+        setFading(true);
+        setTimeout(() => {
+          setPrevIndex(null);
+          setFading(false);
+        }, 700);
+        return next;
+      });
     }, 2500);
     return () => clearInterval(id);
   }, []);
@@ -33,19 +45,27 @@ export default function PhoneMockup({ size = "lg" }: { size?: "sm" | "lg" }) {
       {/* Notch */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70px] h-5 bg-gray-800 rounded-b-3xl z-20" />
 
-      {/* Carousel */}
+      {/* Carousel — only current + prev in DOM */}
       <div className="h-full w-full relative">
-        {screenshots.map((src, i) => (
-          <img
-            key={src}
-            src={src}
-            alt={`EhViewer screenshot ${i + 1}`}
-            draggable={false}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-              i === index ? "opacity-100" : "opacity-0"
-            }`}
+        {prevIndex !== null && (
+          <Image
+            key={`prev-${prevIndex}`}
+            src={screenshots[prevIndex]}
+            alt=""
+            fill
+            sizes="270px"
+            className={`object-cover transition-opacity duration-700 ${fading ? "opacity-0" : "opacity-100"}`}
           />
-        ))}
+        )}
+        <Image
+          key={`cur-${index}`}
+          src={screenshots[index]}
+          alt={`EhViewer screenshot ${index + 1}`}
+          fill
+          sizes="270px"
+          priority={index === 0}
+          className="object-cover"
+        />
       </div>
 
       {/* Dots */}

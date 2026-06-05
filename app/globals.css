@@ -103,8 +103,7 @@ html {
 @keyframes scFloat4 { 0%, 100% { transform: translateY(0px); }  50% { transform: translateY(14px); } }
 
 body {
-  background: linear-gradient(180deg, #00111C 0%, #001523 50%, #001A2C 100%);
-  background-attachment: fixed;
+  background: #00111C;
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
