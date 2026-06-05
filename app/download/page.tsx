@@ -1,22 +1,24 @@
 import Navbar from '../../components/Navbar'
 import DownloadCTA from '../../components/DownloadCTA'
 import DownloadDetails from '../../components/DownloadDetails'
+import FAQSection from '../../components/FAQSection'
 import Footer from '../../components/Footer'
 
 export const metadata = {
-  title: 'Download EhViewer 1.14.6 APK',
+  title: 'Download EhViewer 1.14.6 APK — Free Manga Reader',
   description:
-    'Download EhViewer 1.14.6 — a free, open-source manga reader for Android with Material Design 3 and Dynamic Color. All flavors, debug symbols and source. No signup, no ads, no tracking.',
+    'Download EhViewer 1.14.6 — a free, open-source manga reader for Android with Material Design 3 and Dynamic Color. All EhViewer flavors, debug symbols and source. No signup, no ads, no tracking.',
 }
 
 export default function DownloadPage() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden bg-white">
       <Navbar />
       <div className="pt-24">
-        <DownloadCTA />
+        <DownloadCTA downloadFile="EhViewer-1.14.6-default-universal.apk" />
       </div>
       <DownloadDetails />
+      <FAQSection />
       <Footer />
     </main>
   )

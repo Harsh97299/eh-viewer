@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const cn = (...classes: (string | undefined | null | false)[]) => 
+const cn = (...classes: (string | undefined | null | false)[]) =>
   classes.filter(Boolean).join(' ');
 
 const SQRT_5000 = Math.sqrt(5000);
@@ -90,11 +90,11 @@ interface TestimonialCardProps {
   cardSize: number;
 }
 
-const TestimonialCard: React.FC<TestimonialCardProps> = ({ 
-  position, 
-  testimonial, 
-  handleMove, 
-  cardSize 
+const TestimonialCard: React.FC<TestimonialCardProps> = ({
+  position,
+  testimonial,
+  handleMove,
+  cardSize
 }) => {
   const isCenter = position === 0;
 
@@ -104,8 +104,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       className={cn(
         "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out",
         isCenter
-          ? "z-10 bg-[#00406C] text-[#EAF2F9] border-[#4C9BE0]"
-          : "z-0 bg-[#001A2C] text-[#EAF2F9] border-[#00253E] hover:border-[#4C9BE0]/50"
+          ? "z-10 bg-[#4586F3] text-white border-[#2F6FD6]"
+          : "z-0 bg-white text-[#202124] border-[#E8EAED] hover:border-[#4586F3]/50"
       )}
       style={{
         width: cardSize,
@@ -117,11 +117,11 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           translateY(${isCenter ? -65 : position % 2 ? 15 : -15}px)
           rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg)
         `,
-        boxShadow: isCenter ? "0px 8px 0px 4px #00253E" : "0px 0px 0px 0px transparent"
+        boxShadow: isCenter ? "0px 8px 0px 4px #DADCE0" : "0px 0px 0px 0px transparent"
       }}
     >
       <span
-        className="absolute block origin-top-right rotate-45 bg-[#00253E]"
+        className="absolute block origin-top-right rotate-45 bg-[#E8EAED]"
         style={{
           right: -2,
           top: 48,
@@ -132,17 +132,17 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <img
         src={testimonial.imgSrc}
         alt={`${testimonial.by.split(',')[0]}`}
-        className="mb-4 h-14 w-12 bg-[#002137] object-cover object-top"
+        className="mb-4 h-14 w-12 bg-[#F1F3F4] object-cover object-top"
         style={{
-          boxShadow: "3px 3px 0px #00111C"
+          boxShadow: "3px 3px 0px #E8EAED"
         }}
       />
-      <h3 className="text-base sm:text-xl font-medium text-[#EAF2F9]">
+      <h3 className={cn("text-base sm:text-xl font-medium", isCenter ? "text-white" : "text-[#202124]")}>
         "{testimonial.testimonial}"
       </h3>
       <p className={cn(
         "absolute bottom-8 left-8 right-8 mt-2 text-sm italic",
-        isCenter ? "text-[#EAF2F9]/80" : "text-[#93A7B8]"
+        isCenter ? "text-white/80" : "text-[#5F6368]"
       )}>
         - {testimonial.by}
       </p>
@@ -211,9 +211,9 @@ export const StaggerTestimonials: React.FC = () => {
         <button
           onClick={() => handleMove(-1)}
           className={cn(
-            "flex h-14 w-14 items-center justify-center text-2xl text-[#EAF2F9] transition-colors",
-            "bg-[#001A2C] border-2 border-[#00253E] hover:bg-[#00406C] hover:text-white",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4C9BE0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#00111C]"
+            "flex h-14 w-14 items-center justify-center text-2xl text-[#202124] transition-colors",
+            "bg-white border-2 border-[#E8EAED] hover:bg-[#4586F3] hover:text-white hover:border-[#4586F3]",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4586F3] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           )}
           aria-label="Previous testimonial"
         >
@@ -222,9 +222,9 @@ export const StaggerTestimonials: React.FC = () => {
         <button
           onClick={() => handleMove(1)}
           className={cn(
-            "flex h-14 w-14 items-center justify-center text-2xl text-[#EAF2F9] transition-colors",
-            "bg-[#001A2C] border-2 border-[#00253E] hover:bg-[#00406C] hover:text-white",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4C9BE0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#00111C]"
+            "flex h-14 w-14 items-center justify-center text-2xl text-[#202124] transition-colors",
+            "bg-white border-2 border-[#E8EAED] hover:bg-[#4586F3] hover:text-white hover:border-[#4586F3]",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4586F3] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           )}
           aria-label="Next testimonial"
         >
@@ -237,13 +237,18 @@ export const StaggerTestimonials: React.FC = () => {
 
 export default function AnimatedTestimonialSection() {
   return (
-    <section id="testimonials" className="py-28 px-6 bg-[#00111C]">
-      <div className="max-w-6xl mx-auto text-center mb-12">
-        <p className="text-sm font-semibold text-[#4C9BE0] tracking-[0.12em] uppercase mb-4">
+    <section id="testimonials" className="py-28 px-6 bg-white relative overflow-hidden">
+      {/* Ambient glows */}
+      <div className="absolute top-0 left-1/3 w-96 h-96 rounded-full bg-[#4586F3]/12 blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-[#EB4334]/10 blur-[110px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/6 w-64 h-64 rounded-full bg-[#35AA53]/8 blur-[90px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto text-center mb-12 relative z-10">
+        <p className="text-sm font-semibold text-[#4586F3] tracking-[0.12em] uppercase mb-4">
           Reviews
         </p>
-        <h2 className="text-4xl md:text-5xl font-bold text-[#EAF2F9] leading-tight tracking-tight">
-          Loved by readers everywhere
+        <h2 className="text-4xl md:text-5xl font-bold text-[#202124] leading-tight tracking-tight">
+          Why fans stick with EhViewer
         </h2>
       </div>
       <StaggerTestimonials />

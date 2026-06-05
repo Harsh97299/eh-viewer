@@ -1,217 +1,155 @@
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
-import AnimateIn from '../../components/AnimateIn'
-import Link from 'next/link'
-import {
-  Lightbulb,
-  Users,
-  Heart,
-  Search,
-  Library,
-  Shield,
-  ZoomIn,
-  Palette,
-  Download,
-  Star,
-  BookOpen,
-} from 'lucide-react'
+import Link from "next/link";
+import { Sparkles, Palette, Heart } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import PhoneMockup from "../../components/PhoneMockup";
+import AnimateIn from "../../components/AnimateIn";
+import FAQSection from "../../components/FAQSection";
 
 export const metadata = {
-  title: 'About',
+  title: "About EhViewer — Free Open-Source Manga Reader",
   description:
-    'Learn about EhViewer — a free, open-source manga reader for Android built with Material Design 3, Dynamic Color, and a huge catalog of manga comics.',
+    "The story behind EhViewer — a free, open-source manga reader built by the community to give fans worldwide a smooth, friendly reading experience.",
+};
+
+interface Value {
+  icon: LucideIcon;
+  color: string;
+  title: string;
+  description: string;
 }
 
-const CORE_VALUES = [
+const values: Value[] = [
   {
-    icon: Lightbulb,
-    title: 'Innovation',
+    icon: Sparkles,
+    color: "#4586F3",
+    title: "Discovery",
     description:
-      'We strive to introduce cutting-edge features that transform how you enjoy manga comics on your phone.',
-  },
-  {
-    icon: Users,
-    title: 'User-Centric Design',
-    description:
-      'Our interface is crafted with readers in mind, ensuring a seamless and intuitive experience for all manga fans.',
-  },
-  {
-    icon: Heart,
-    title: 'Community First',
-    description:
-      'EhViewer is built by the community, for the community — open source, transparent, and always improving.',
-  },
-]
-
-const FEATURES = [
-  {
-    icon: Search,
-    title: 'Powerful Search',
-    description:
-      'Search by keyword, tags, artist, year, and more — with advanced filters for precise results.',
-  },
-  {
-    icon: Library,
-    title: 'Huge Collection',
-    description:
-      'Access a vast catalog spanning every genre — new releases and classics alike, always at your fingertips.',
-  },
-  {
-    icon: Shield,
-    title: 'Privacy First',
-    description:
-      'No account required, no personal data collected, no ads, no trackers. Browse freely and securely.',
-  },
-  {
-    icon: ZoomIn,
-    title: 'Zoom Reading',
-    description: 'Pinch to zoom for crystal-clear reading. Never strain your eyes over small text again.',
+      "EhViewer is built to help you find your next favorite series — fresh features that make discovering manga on your phone genuinely fun.",
   },
   {
     icon: Palette,
-    title: 'Fully Customizable',
+    color: "#EB4334",
+    title: "Reader-First Design",
     description:
-      'Change themes, layouts, and display settings to create your ideal reading environment.',
+      "Like a perfectly organized manga shelf, EhViewer keeps everything exactly where you need it — a smooth, intuitive experience for every reader.",
   },
   {
-    icon: Download,
-    title: 'Offline Downloads',
+    icon: Heart,
+    color: "#35AA53",
+    title: "Community",
     description:
-      'Download your favorite comics and read anywhere — even without an internet connection.',
+      "EhViewer is open source means fans helping fans. Contributors, translators, and maintainers around the world keep it growing.",
   },
-  {
-    icon: Star,
-    title: 'Favorites List',
-    description: 'Tap the heart icon to save any comic to your favorites for quick access anytime.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Reading Progress',
-    description:
-      'Pick up exactly where you left off — EhViewer saves your position across every title.',
-  },
-]
+];
 
 export default function AboutPage() {
   return (
-    <main className="overflow-x-hidden">
+    <>
       <Navbar />
-      <div className="pt-24 bg-[#00111C] text-[#EAF2F9]">
+      <main className="overflow-x-hidden">
         {/* Hero */}
-        <section className="px-6 pt-16 pb-20">
-          <div className="max-w-3xl mx-auto">
-            <AnimateIn>
-              <p className="text-[#4C9BE0] text-xs font-semibold tracking-[0.14em] uppercase mb-4">
-                About EhViewer
+        <section className="px-6 pt-36 pb-20 relative overflow-hidden">
+          {/* Ambient glows — multicolor */}
+          <div className="absolute -top-10 right-1/4 w-96 h-96 rounded-full bg-blue/20 blur-[130px] pointer-events-none" />
+          <div className="absolute bottom-0 left-1/6 w-80 h-80 rounded-full bg-red/15 blur-[110px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/3 w-72 h-72 rounded-full bg-yellow/12 blur-[100px] pointer-events-none" />
+          <div className="absolute top-1/4 right-1/3 w-72 h-72 rounded-full bg-green/10 blur-[110px] pointer-events-none" />
+
+          <div className="max-w-6xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Copy */}
+            <AnimateIn direction="left">
+              <p className="text-sm font-semibold text-blue tracking-[0.12em] uppercase mb-4">
+                Our Story
               </p>
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-                A manga reader built for readers
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-foreground">
+                About{" "}
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue via-green to-red">
+                  EhViewer
+                </span>
               </h1>
-              <p className="text-[#93A7B8] leading-relaxed text-lg mb-10">
-                EhViewer is a free, open-source manga reader for Android, dedicated to offering a
-                seamless reading experience with a user-friendly interface, a huge comic catalog,
-                and top-notch privacy — no account, no ads, no tracking.
+
+              <p className="mt-6 text-text-muted leading-relaxed">
+                The internet is more fun when knowledge is shared. EhViewer
+                exists to give manga fans worldwide a smooth, friendly place to
+                read — clean, fast, and free of the clutter that gets in the way
+                of a good story.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/download"
-                  className="px-5 py-2.5 rounded-full bg-[#00406C] text-white text-sm font-medium
-                             hover:bg-[#003A61] transition-colors"
-                >
-                  Download EhViewer
-                </Link>
-                <Link
-                  href="/faq"
-                  className="px-5 py-2.5 rounded-full border border-[#00253E] text-[#EAF2F9] text-sm
-                             font-medium hover:bg-[#001A2C] transition-colors"
-                >
-                  Read the FAQ
-                </Link>
+              <p className="mt-4 text-text-muted leading-relaxed">
+                EhViewer started as a passion project and grew into a true
+                open-source effort. Every great manga journey begins with a
+                single chapter, and we wanted that first chapter to feel
+                effortless on any phone.
+              </p>
+              <p className="mt-4 text-text-muted leading-relaxed">
+                Today EhViewer is shaped by passionate contributors, translators,
+                and maintainers around the world — fans helping fans discover the
+                next series worth staying up for.
+              </p>
+            </AnimateIn>
+
+            {/* Phone visual */}
+            <AnimateIn
+              direction="right"
+              className="flex justify-center lg:justify-end"
+            >
+              <div
+                className="relative shrink-0"
+                style={{ animation: "floatY14 4.5s ease-in-out infinite" }}
+              >
+                <div className="absolute inset-0 bg-blue/20 blur-[70px] scale-90 rounded-full -z-10" />
+                <PhoneMockup size="lg" frame="dark" />
               </div>
             </AnimateIn>
           </div>
         </section>
 
-        {/* Our Story */}
-        <section className="px-6 py-20 border-t border-[#00253E]">
-          <div className="max-w-3xl mx-auto">
-            <AnimateIn>
-              <p className="text-[#4C9BE0] text-xs font-semibold tracking-[0.14em] uppercase mb-3">
-                Our Story
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6">
-                A vision for better manga reading
-              </h2>
-              <p className="text-[#93A7B8] leading-relaxed mb-5">
-                EhViewer began in 2014 with a simple goal: make online manga reading effortless and
-                enjoyable on mobile. Over the years it has been carried forward by a series of
-                community contributors — and today the project lives on as a GPLv3-licensed,
-                community-driven fork dedicated to high performance and Material Design 3.
-              </p>
-              <p className="text-[#93A7B8] leading-relaxed">
-                The current 1.14.6 release adds gallery reading progress, Windows-compatible
-                filename handling, and a range of stability improvements — the result of ongoing
-                collaboration from manga fans around the world.
-              </p>
-            </AnimateIn>
-          </div>
-        </section>
-
         {/* Core Values */}
-        <section className="px-6 py-20 border-t border-[#00253E]">
-          <div className="max-w-6xl mx-auto">
-            <AnimateIn>
-              <p className="text-[#4C9BE0] text-xs font-semibold tracking-[0.14em] uppercase mb-3">
-                Core Values
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">What guides us</h2>
-              <p className="text-[#93A7B8] leading-relaxed mb-12 max-w-2xl">
-                Discover the principles behind our mission to enhance your manga reading experience.
-              </p>
-            </AnimateIn>
-            <div className="grid md:grid-cols-3 gap-5">
-              {CORE_VALUES.map((v, i) => (
-                <AnimateIn key={v.title} delay={i * 80}>
-                  <div className="rounded-[28px] bg-[#001523] border border-[#00253E] p-7 md:p-9 h-full">
-                    <div className="flex items-center gap-2.5 mb-4 text-[#4C9BE0]">
-                      <v.icon size={20} />
-                      <h3 className="text-white font-semibold text-lg">{v.title}</h3>
-                    </div>
-                    <p className="text-[14px] text-[#93A7B8] leading-relaxed">{v.description}</p>
-                  </div>
-                </AnimateIn>
-              ))}
-            </div>
-          </div>
-        </section>
+        <section className="px-6 py-24 bg-surface relative overflow-hidden">
+          {/* Ambient glows */}
+          <div className="absolute -top-20 right-1/5 w-96 h-96 rounded-full bg-red/8 blur-[130px] pointer-events-none" />
+          <div className="absolute bottom-0 left-1/5 w-80 h-80 rounded-full bg-blue/10 blur-[110px] pointer-events-none" />
 
-        {/* Feature highlights */}
-        <section className="px-6 py-20 border-t border-[#00253E]">
-          <div className="max-w-6xl mx-auto">
-            <AnimateIn>
-              <p className="text-[#4C9BE0] text-xs font-semibold tracking-[0.14em] uppercase mb-3">
-                Why EhViewer
+          <div className="max-w-6xl mx-auto relative z-10">
+            <AnimateIn className="text-center max-w-2xl mx-auto">
+              <p className="text-sm font-semibold text-blue tracking-[0.12em] uppercase mb-4">
+                What Drives Us
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">
-                Everything a manga reader needs
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                What EhViewer stands for
               </h2>
-              <p className="text-[#93A7B8] leading-relaxed mb-12 max-w-2xl">
-                From powerful search to offline downloads — EhViewer covers all your reading needs,
-                completely free and open source.
+              <p className="mt-4 text-text-muted leading-relaxed">
+                The values that guide every decision behind EhViewer and keep
+                the reading experience fun.
               </p>
             </AnimateIn>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {FEATURES.map((f, i) => (
-                <AnimateIn key={f.title} delay={i * 60}>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-14">
+              {values.map((value, i) => (
+                <AnimateIn key={value.title} delay={i * 100}>
                   <div
-                    className="rounded-[28px] bg-[#001A2C] border border-[#00253E] p-6 h-full
-                                hover:border-[#003356] hover:-translate-y-1 transition-all duration-300"
+                    className="rounded-[28px] bg-background border border-border p-7 h-full
+                               shadow-[0_4px_20px_rgba(0,0,0,0.05)]
+                               hover:shadow-[0_24px_60px_rgba(0,0,0,0.12)]
+                               hover:-translate-y-2.5 transition-all duration-300"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-[#00253E] text-[#4C9BE0] flex items-center justify-center mb-4">
-                      <f.icon size={18} />
+                    <div
+                      className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
+                      style={{ backgroundColor: `${value.color}1A` }}
+                    >
+                      <value.icon
+                        size={22}
+                        style={{ color: value.color }}
+                        strokeWidth={2}
+                      />
                     </div>
-                    <h3 className="text-white font-semibold text-[15px] mb-2">{f.title}</h3>
-                    <p className="text-[13px] text-[#93A7B8] leading-relaxed">{f.description}</p>
+                    <h3 className="text-[17px] font-bold text-foreground mb-2 tracking-tight">
+                      {value.title}
+                    </h3>
+                    <p className="text-[14px] text-text-muted leading-relaxed">
+                      {value.description}
+                    </p>
                   </div>
                 </AnimateIn>
               ))}
@@ -219,40 +157,30 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Open source + CTA */}
-        <section className="px-6 py-20 border-t border-[#00253E]">
-          <div className="max-w-3xl mx-auto">
+        {/* CTA */}
+        <section className="px-6 py-20">
+          <div className="max-w-6xl mx-auto">
             <AnimateIn>
-              <h2 className="text-2xl font-bold tracking-tight mb-4">Open source</h2>
-              <p className="text-[#93A7B8] leading-relaxed mb-6">
-                EhViewer is distributed under the{' '}
-                <a
-                  href="https://www.gnu.org/licenses/gpl-3.0.html"
-                  className="text-[#4C9BE0] hover:underline"
-                >
-                  GNU General Public License v3
-                </a>
-                . Browse the source, report issues, and follow releases on{' '}
-                <a
-                  href="https://github.com/Ehviewer-Overhauled/Ehviewer"
-                  className="text-[#4C9BE0] hover:underline"
-                >
-                  GitHub
-                </a>
-                .
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                Ready for your next reading arc?
+              </h2>
+              <p className="mt-4 text-text-muted leading-relaxed max-w-xl">
+                Download EhViewer for Android and dive into your next favorite
+                manga — free, open source, no signup, no ads.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/download"
-                  className="px-5 py-2.5 rounded-full bg-[#00406C] text-white text-sm font-medium
-                             hover:bg-[#003A61] transition-colors"
+                  className="px-7 py-3.5 rounded-full bg-blue text-white font-semibold text-[15px]
+                             shadow-[0_8px_28px_rgba(69,134,243,0.3)] hover:bg-blue-hover
+                             hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
                 >
                   Download EhViewer
                 </Link>
                 <Link
                   href="/contact"
-                  className="px-5 py-2.5 rounded-full border border-[#00253E] text-[#EAF2F9] text-sm
-                             font-medium hover:bg-[#001A2C] transition-colors"
+                  className="px-7 py-3.5 rounded-full border border-border text-foreground font-semibold
+                             text-[15px] hover:bg-surface transition-colors"
                 >
                   Contact us
                 </Link>
@@ -260,8 +188,10 @@ export default function AboutPage() {
             </AnimateIn>
           </div>
         </section>
-      </div>
+
+        <FAQSection className="bg-surface" />
+      </main>
       <Footer />
-    </main>
-  )
+    </>
+  );
 }
