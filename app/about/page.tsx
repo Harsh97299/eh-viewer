@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import PhoneMockup from "../../components/PhoneMockup";
 import AnimateIn from "../../components/AnimateIn";
-import FAQSection from "../../components/FAQSection";
+import FAQSection from "../../components/FaqSection";
 
 export const metadata = {
   title: "About EhViewer — Free Open-Source Manga Reader",
@@ -189,7 +189,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <FAQSection className="bg-surface" />
       </main>
       <Footer />
     </>

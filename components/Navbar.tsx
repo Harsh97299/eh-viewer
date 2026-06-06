@@ -1,23 +1,24 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: 'Home',    href: '/'             },
-  { label: 'About',   href: '/about'        },
-  { label: 'FAQ',     href: '/faq'          },
-  { label: 'Contact', href: '/contact'      },
-  { label: 'FAQ',     href: '/faq'           },
-]
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-2xl border-b border-[#E8EAED]/80"
-      style={{ animation: 'navbarEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both' }}
+      style={{
+        animation: "navbarEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both",
+      }}
     >
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
         {/* Logo */}
@@ -27,14 +28,16 @@ export default function Navbar() {
             alt="EhViewer logo"
             className="w-8 h-8 rounded-xl shadow-[0_4px_12px_rgba(69,134,243,0.25)]"
           />
-          <span className="font-semibold text-[#202124] text-[17px] tracking-tight">EhViewer</span>
+          <span className="font-semibold text-[#202124] text-[17px] tracking-tight">
+            EhViewer
+          </span>
         </a>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((l) => (
             <a
-              key={l.label}
+              key={`${l.label}-${l.href}`}
               href={l.href}
               className="text-sm text-[#5F6368] hover:text-[#202124] transition-colors duration-200"
             >
@@ -68,12 +71,12 @@ export default function Navbar() {
       <div
         className={`md:hidden overflow-hidden bg-white/95 backdrop-blur-2xl border-b border-[#E8EAED] px-6
                     transition-all duration-300 ease-in-out
-                    ${open ? 'max-h-[280px] opacity-100' : 'max-h-0 opacity-0'}`}
+                    ${open ? "max-h-[280px] opacity-100" : "max-h-0 opacity-0"}`}
       >
         <div className="py-6 flex flex-col gap-5">
           {navLinks.map((l) => (
             <a
-              key={l.label}
+              key={`${l.label}-${l.href}`}
               href={l.href}
               onClick={() => setOpen(false)}
               className="text-[#5F6368] hover:text-[#202124] transition-colors font-medium"
@@ -91,5 +94,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

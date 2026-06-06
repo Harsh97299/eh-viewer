@@ -1,7 +1,7 @@
 import Navbar from '../../components/Navbar'
 import DownloadCTA from '../../components/DownloadCTA'
 import DownloadDetails from '../../components/DownloadDetails'
-import FAQSection from '../../components/FAQSection'
+import FAQSection from '../../components/FaqSection'
 import Footer from '../../components/Footer'
 
 export const metadata = {
@@ -18,7 +18,6 @@ export default function DownloadPage() {
         <DownloadCTA downloadFile="EhViewer-1.14.6-default-universal.apk" />
       </div>
       <DownloadDetails />
-      <FAQSection />
       <Footer />
     </main>
   )

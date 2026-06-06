@@ -3,14 +3,9 @@ import HeroSection from "../components/HeroSection";
 import FeaturesSection from "../components/features-section-demo-2";
 import ProcessSection from "../components/ProcessSection";
 import TestimonialsSection from "../components/AnimatedTestimonialSection";
-import FaqSection from "../components/FaqSection";
 import DownloadCTA from "../components/DownloadCTA";
-import FAQSection from "../components/FAQSection";
-import { generalFaqs } from "../components/faqData";
+import FAQSection from "../components/FaqSection";
 import Footer from "../components/Footer";
-
-// Home shows a curated 3 — the full set lives on /faq.
-const homeFaqs = [generalFaqs[0], generalFaqs[1], generalFaqs[3]];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -50,9 +45,8 @@ export default function Home() {
         <FeaturesSection />
         <ProcessSection />
         <TestimonialsSection />
-        <FaqSection limit={6} />
         <DownloadCTA />
-        <FAQSection items={homeFaqs} viewAllHref="/faq" />
+        <FAQSection limit={3} />
         <Footer />
       </main>
     </>

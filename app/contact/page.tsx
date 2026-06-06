@@ -2,7 +2,7 @@ import { Bug, MessageCircle } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import AnimateIn from "../../components/AnimateIn";
-import FAQSection from "../../components/FAQSection";
+import FAQSection from "../../components/FaqSection";
 
 export const metadata = {
   title: "Contact EhViewer — Reach the Team & Community",
@@ -206,8 +206,6 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-
-        <FAQSection />
       </main>
       <Footer />
     </>

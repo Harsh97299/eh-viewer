@@ -1,4 +1,5 @@
 import { Download, BookOpen } from "lucide-react";
+import Image from "next/image";
 import PhoneMockup from "./PhoneMockup";
 
 type Avatar = {
@@ -170,6 +171,8 @@ export default function HeroSection() {
                 key={i}
                 src={src}
                 alt=""
+                width={44}
+                height={44}
                 className="w-11 h-11 rounded-full border-2 border-white shadow-sm object-cover bg-[#F1F3F4]"
               />
             ))}

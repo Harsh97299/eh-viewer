@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import FAQSection from "../../components/FAQSection";
+import FAQSection from "../../components/FaqSection";
 
 export const metadata = {
   title: "EhViewer Privacy Policy — Privacy-First Manga Reader",

@@ -49,18 +49,35 @@ export default function FaqSection({ limit, showHeading = true }: Props) {
   const [openIdx, setOpenIdx] = useState<number | null>(null)
   const items = limit ? FAQS.slice(0, limit) : FAQS
 
+  // FAQPage rich-results schema — matches the questions actually rendered.
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }
+
   return (
-    <section id="faq" className="bg-[#00111C] py-24 px-6">
+    <section id="faq" className="bg-surface py-24 px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
       <div className="max-w-3xl mx-auto">
         {showHeading && (
           <AnimateIn>
-            <p className="text-[#4C9BE0] text-xs font-semibold tracking-[0.14em] uppercase mb-3">
+            <p className="text-blue text-xs font-semibold tracking-[0.14em] uppercase mb-3">
               FAQ
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#EAF2F9] tracking-tight mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-4">
               Frequently asked questions
             </h2>
-            <p className="text-[#93A7B8] leading-relaxed mb-12">
+            <p className="text-text-muted leading-relaxed mb-12">
               Quick answers to common questions about EhViewer.
             </p>
           </AnimateIn>
@@ -73,18 +90,18 @@ export default function FaqSection({ limit, showHeading = true }: Props) {
               return (
                 <div
                   key={i}
-                  className="rounded-2xl border border-[#00253E] bg-[#001523] overflow-hidden"
+                  className="rounded-2xl border border-border bg-background shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden"
                 >
                   <button
                     onClick={() => setOpenIdx(isOpen ? null : i)}
                     className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left
-                               text-[#EAF2F9] font-medium hover:text-white transition-colors"
+                               text-foreground font-medium hover:bg-surface transition-colors"
                     aria-expanded={isOpen}
                   >
                     <span>{item.q}</span>
                     <ChevronDown
                       size={18}
-                      className={`flex-shrink-0 text-[#4C9BE0] transition-transform duration-300 ${
+                      className={`flex-shrink-0 text-blue transition-transform duration-300 ${
                         isOpen ? 'rotate-180' : ''
                       }`}
                     />
@@ -94,7 +111,7 @@ export default function FaqSection({ limit, showHeading = true }: Props) {
                       isOpen ? 'max-h-96' : 'max-h-0'
                     }`}
                   >
-                    <p className="px-6 pb-5 text-[#93A7B8] leading-relaxed text-[15px]">
+                    <p className="px-6 pb-5 text-text-muted leading-relaxed text-[15px]">
                       {item.a}
                     </p>
                   </div>
@@ -109,7 +126,7 @@ export default function FaqSection({ limit, showHeading = true }: Props) {
             <div className="mt-10 text-center">
               <Link
                 href="/faq"
-                className="inline-flex items-center gap-2 text-[#4C9BE0] text-sm font-medium hover:underline"
+                className="inline-flex items-center gap-2 text-blue text-sm font-medium hover:underline"
               >
                 View all {FAQS.length} questions →
               </Link>
