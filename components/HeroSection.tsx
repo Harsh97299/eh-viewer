@@ -1,5 +1,6 @@
 import { Download, BookOpen } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import PhoneMockup from "./PhoneMockup";
 
 type Avatar = {
@@ -128,8 +129,11 @@ export default function HeroSection() {
         >
           Your next favorite manga adventure starts here. EhViewer packs a huge
           catalog, offline downloads, zoom-perfect reading, and custom themes
-          into one free, open-source app. Warning: may cause accidental
-          all-night reading sessions.
+          into one free,{" "}
+          <Link href="/about" className="text-[#4586F3] hover:underline">
+            open-source
+          </Link>{" "}
+          app. Warning: may cause accidental all-night reading sessions.
         </p>
 
         {/* CTA buttons */}

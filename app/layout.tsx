@@ -13,11 +13,11 @@ const geist = Geist({
 export const metadata: Metadata = {
   metadataBase: new URL("https://ehviewer.app"),
   title: {
-    default: "EhViewer — Free Manga Reader for Android & iOS",
+    default: "EhViewer — Free Manga Reader for Android (iOS Coming Soon)",
     template: "%s | EhViewer",
   },
   description:
-    "Download EhViewer APK — a free manga & anime comic reader for Android and iOS. Huge catalog, offline downloads, zoom reading, custom themes, and privacy-first browsing.",
+    "Download EhViewer APK — a free manga & anime comic reader for Android. Huge catalog, offline downloads, zoom reading, custom themes, and privacy-first browsing. iOS coming soon.",
   keywords: [
     "EhViewer",
     "EhViewer APK",
@@ -33,16 +33,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "EhViewer — Free Manga Reader for Android & iOS",
+    title: "EhViewer — Free Manga Reader for Android (iOS Coming Soon)",
     description:
-      "Free manga & anime comic reader. Huge catalog, offline downloads, zoom, custom themes, privacy-first.",
+      "Free manga & anime comic reader for Android. Huge catalog, offline downloads, zoom, custom themes, privacy-first. iOS coming soon.",
     siteName: "EhViewer",
   },
   twitter: {
     card: "summary_large_image",
-    title: "EhViewer — Free Manga Reader",
+    title: "EhViewer — Free Manga Reader for Android",
     description:
-      "Free manga & anime comic reader. Huge catalog, offline downloads, zoom, custom themes.",
+      "Free manga & anime comic reader for Android. Offline downloads, zoom, custom themes. iOS coming soon.",
   },
   robots: {
     index: true,

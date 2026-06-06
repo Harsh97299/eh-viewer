@@ -113,6 +113,16 @@ export default async function ContactPage({
                 message below, or reach the maintainers directly on GitHub —
                 feedback, ideas, and bug reports are always welcome.
               </p>
+              <p className="mt-3 text-text-muted leading-relaxed max-w-xl">
+                You can also email us directly at{" "}
+                <a
+                  href="mailto:support@ehviewer.app"
+                  className="text-blue hover:underline"
+                >
+                  support@ehviewer.app
+                </a>
+                .
+              </p>
             </AnimateIn>
 
             {status === "sent" && (

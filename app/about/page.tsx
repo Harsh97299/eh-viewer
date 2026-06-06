@@ -40,7 +40,7 @@ const values: Value[] = [
     color: "#35AA53",
     title: "Community",
     description:
-      "EhViewer is open source means fans helping fans. Contributors, translators, and maintainers around the world keep it growing.",
+      "Being open source means fans helping fans. Contributors, translators, and maintainers around the world keep it growing.",
   },
 ];
 

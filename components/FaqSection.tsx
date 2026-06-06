@@ -5,14 +5,16 @@ import { ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import AnimateIn from './AnimateIn'
 
-const FAQS = [
+const FAQS: { q: string; a: string; cta?: { href: string; label: string } }[] = [
   {
     q: 'How can I search for content on EhViewer?',
     a: 'EhViewer includes a powerful search engine that goes well beyond a basic keyword box. You can enter titles, enter partial titles, and combine multiple filters in a single query. Category filters let you narrow results to specific genres such as doujinshi, manga, artist CG, or western. Tag-based search is particularly precise — tap any tag on a gallery detail page to launch an instant filtered search for that tag. You can also search by artist name, group, parody, or character, and sort results by rating, date, or page count. Saved searches and a browsing history make it easy to return to previous queries. The search syntax supports negation (prefix a term with a minus sign to exclude it), so you can build highly specific queries without scrolling through irrelevant results.',
+    cta: { href: '/download', label: 'Download EhViewer →' },
   },
   {
     q: 'Is EhViewer available on the Google Play Store?',
     a: 'No — EhViewer is not available on the Google Play Store, and that is intentional. EhViewer is a free, open-source application distributed directly to users so that no platform can restrict or remove it based on content policies. To install it, you download the APK file directly from this website, enable "Install from unknown sources" in your Android settings (Settings → Security → Unknown sources or Settings → Apps → Special app access on newer Android versions), and then tap the downloaded file to install. The process takes under two minutes. Once installed, EhViewer updates are announced on GitHub Releases, so you can always check there for the latest version.',
+    cta: { href: '/download', label: 'Get the APK →' },
   },
   {
     q: 'Can I customize my viewing experience?',
@@ -25,14 +27,17 @@ const FAQS = [
   {
     q: 'Can I download content for offline viewing?',
     a: 'Yes. EhViewer has a built-in download manager that lets you save entire galleries to your device for reading without an internet connection. From any gallery detail page, tap the download button to queue it. You can monitor download progress, pause and resume downloads, and manage your library of saved content from the Downloads section of the app. Storage location is configurable — you can save to internal storage or an SD card depending on your device. Image resolution settings let you balance file size against quality: choose original quality for the best reading experience or a compressed preset to conserve space. Downloaded galleries remain available indefinitely and are stored entirely on your device, so no account or cloud subscription is required.',
+    cta: { href: '/download', label: 'Download EhViewer →' },
   },
   {
     q: 'Is EhViewer free?',
     a: 'EhViewer is completely free — there is no purchase price, no subscription fee, no premium tier, and no in-app purchases of any kind. All features, including offline downloads, advanced search, custom themes, and the full catalog, are available to every user at no cost. EhViewer is licensed under the GNU General Public License v3 (GPLv3), which means it is not only free to use but also free to inspect, modify, and redistribute. The full source code is publicly available on GitHub. There are no advertisements in the app and no monetisation mechanism of any sort. The project is maintained entirely by volunteer contributors who believe that a quality manga reader should be accessible to everyone without financial barriers.',
+    cta: { href: '/download', label: 'Download for free →' },
   },
   {
     q: 'What should I do if EhViewer is not working properly?',
     a: 'Start by checking that you are running the latest version of EhViewer — visit the Download page on this site or check the Releases page on GitHub for the current release. Many reported issues are resolved in newer versions. Also confirm that your Android OS is up to date, as some features depend on system APIs introduced in newer Android versions. If you are on Android 6 (Marshmallow), make sure you have installed the ISRG Root X1 certificate, which is required for secure connections on that version. If the problem persists after updating, open a new issue on the EhViewer GitHub Issues page. Include your Android version, device model, EhViewer version, and a clear description of the steps that reproduce the problem. The maintainer community reviews issues regularly and community members often provide workarounds quickly.',
+    cta: { href: '/download', label: 'Check for updates →' },
   },
   {
     q: 'Is EhViewer legal?',
@@ -111,9 +116,19 @@ export default function FaqSection({ limit, showHeading = true }: Props) {
                       isOpen ? 'max-h-150' : 'max-h-0'
                     }`}
                   >
-                    <p className="px-6 pb-5 text-text-muted leading-relaxed text-[15px]">
+                    <p className="px-6 pt-1 pb-4 text-text-muted leading-relaxed text-[15px]">
                       {item.a}
                     </p>
+                    {item.cta && (
+                      <div className="px-6 pb-5">
+                        <Link
+                          href={item.cta.href}
+                          className="inline-flex items-center text-blue text-sm font-medium hover:underline"
+                        >
+                          {item.cta.label}
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 </div>
               )
@@ -121,9 +136,18 @@ export default function FaqSection({ limit, showHeading = true }: Props) {
           </div>
         </AnimateIn>
 
+        <AnimateIn delay={200}>
+          <div className="mt-8 text-center text-sm text-text-muted">
+            Still have questions?{' '}
+            <Link href="/contact" className="text-blue font-medium hover:underline">
+              Contact us →
+            </Link>
+          </div>
+        </AnimateIn>
+
         {limit && FAQS.length > limit && (
-          <AnimateIn delay={200}>
-            <div className="mt-10 text-center">
+          <AnimateIn delay={250}>
+            <div className="mt-4 text-center">
               <Link
                 href="/faq"
                 className="inline-flex items-center gap-2 text-blue text-sm font-medium hover:underline"

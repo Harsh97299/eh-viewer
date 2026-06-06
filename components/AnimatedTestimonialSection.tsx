@@ -137,15 +137,15 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           boxShadow: "3px 3px 0px #E8EAED"
         }}
       />
-      <h3 className={cn("text-base sm:text-xl font-medium", isCenter ? "text-white" : "text-[#202124]")}>
+      <blockquote className={cn("text-base sm:text-xl font-medium m-0", isCenter ? "text-white" : "text-[#202124]")}>
         "{testimonial.testimonial}"
-      </h3>
-      <p className={cn(
+      </blockquote>
+      <cite className={cn(
         "absolute bottom-8 left-8 right-8 mt-2 text-sm italic",
         isCenter ? "text-white/80" : "text-[#5F6368]"
       )}>
         - {testimonial.by}
-      </p>
+      </cite>
     </div>
   );
 };

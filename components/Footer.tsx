@@ -57,8 +57,8 @@ export default function Footer() {
               <span className="font-semibold text-[#202124] text-[17px] tracking-tight">EhViewer</span>
             </Link>
             <p className="text-sm text-[#5F6368] leading-relaxed max-w-50">
-              EhViewer — a free, open-source manga reader for Android &amp; iOS,
-              built by the community.
+              EhViewer — a free, open-source manga reader for Android — iOS coming
+              soon — built by the community.
             </p>
           </div>
 

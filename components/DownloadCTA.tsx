@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Download, Lock } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import AnimateIn from './AnimateIn'
 import FloatingPhone from './FloatingPhone'
 
@@ -141,7 +142,11 @@ export default function DownloadCTA({ downloadFile }: { downloadFile?: string })
                 <p className="text-[#5F6368] text-[17px] leading-relaxed mb-10">
                   Every great manga journey begins with a single chapter. EhViewer is a
                   free, open-source reader with Material Design 3 and Dynamic Color —
-                  no signup, no ads, no tracking. Install in under a minute.
+                  no signup, no ads,{' '}
+                  <Link href="/privacy-policy" className="text-[#4586F3] hover:underline">
+                    no tracking
+                  </Link>
+                  . Install in under a minute.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4">
