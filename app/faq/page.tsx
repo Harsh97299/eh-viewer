@@ -6,6 +6,7 @@ export const metadata = {
   title: "EhViewer FAQ — Install, Offline Reading & Privacy",
   description:
     "Answers to common EhViewer questions — what EhViewer is, pricing, supported devices, installing the APK, offline reading, privacy, and updates.",
+  alternates: { canonical: "https://ehviewer.app/faq" },
 };
 
 export default function FAQPage() {
@@ -13,6 +14,7 @@ export default function FAQPage() {
     <>
       <Navbar />
       <main className="overflow-x-hidden pt-12">
+        <h1 className="sr-only">EhViewer FAQ — Frequently Asked Questions</h1>
         <FAQSection />
       </main>
       <Footer />

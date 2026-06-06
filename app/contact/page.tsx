@@ -3,12 +3,12 @@ import { redirect } from "next/navigation";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import AnimateIn from "../../components/AnimateIn";
-import FAQSection from "../../components/FaqSection";
 
 export const metadata = {
   title: "Contact EhViewer — Reach the Team & Community",
   description:
     "Get in touch with the EhViewer project — send a message or reach the maintainers and community on GitHub.",
+  alternates: { canonical: "https://ehviewer.app/contact" },
 };
 
 // Inline server action keeps this page server-rendered. Delivers the message via

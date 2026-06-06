@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const navGroups = [
   {
     title: 'Product',
@@ -11,7 +13,7 @@ const navGroups = [
   {
     title: 'Project',
     links: [
-      { label: 'Source Code', href: '/download' },
+      { label: 'Source Code', href: 'https://github.com/Ehviewer-Overhauled/Ehviewer' },
       { label: 'Release Notes', href: 'https://github.com/Ehviewer-Overhauled/Ehviewer/releases' },
       { label: 'Report a Bug', href: 'https://github.com/Ehviewer-Overhauled/Ehviewer/issues' },
       { label: 'GPLv3 License', href: 'https://www.gnu.org/licenses/gpl-3.0.html' },
@@ -46,14 +48,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-14">
           {/* Brand column */}
           <div>
-            <a href="/" className="inline-flex items-center gap-2 mb-5">
+            <Link href="/" className="inline-flex items-center gap-2 mb-5">
               <img
                 src="/launcher_icon-web.svg"
                 alt="EhViewer logo"
                 className="w-8 h-8 rounded-xl shadow-[0_4px_12px_rgba(69,134,243,0.25)]"
               />
               <span className="font-semibold text-[#202124] text-[17px] tracking-tight">EhViewer</span>
-            </a>
+            </Link>
             <p className="text-sm text-[#5F6368] leading-relaxed max-w-50">
               EhViewer — a free, open-source manga reader for Android &amp; iOS,
               built by the community.
@@ -69,12 +71,23 @@ export default function Footer() {
               <ul className="space-y-3.5">
                 {g.links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-[#5F6368] hover:text-[#202124] transition-colors duration-200"
-                    >
-                      {link.label}
-                    </a>
+                    {link.href.startsWith('http') ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-[#5F6368] hover:text-[#202124] transition-colors duration-200"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-[#5F6368] hover:text-[#202124] transition-colors duration-200"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

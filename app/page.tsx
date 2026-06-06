@@ -11,10 +11,15 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "EhViewer",
+  url: "https://ehviewer.app",
+  downloadUrl: "https://ehviewer.app/download",
+  softwareVersion: "1.14.6",
+  datePublished: "2025-12-17",
   applicationCategory: "BookApplication",
-  operatingSystem: "Android, iOS",
+  operatingSystem: "Android",
   description:
     "EhViewer is a free, open-source manga & anime comic reader for Android. Huge catalog, offline downloads, zoom reading, customizable themes, and privacy-first browsing.",
+  image: "https://ehviewer.app/launcher_icon-web.png",
   offers: {
     "@type": "Offer",
     price: "0",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -22,7 +23,7 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <img
             src="/launcher_icon-web.svg"
             alt="EhViewer logo"
@@ -31,30 +32,30 @@ export default function Navbar() {
           <span className="font-semibold text-[#202124] text-[17px] tracking-tight">
             EhViewer
           </span>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((l) => (
-            <a
+            <Link
               key={`${l.label}-${l.href}`}
               href={l.href}
               className="text-sm text-[#5F6368] hover:text-[#202124] transition-colors duration-200"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* Desktop CTA */}
-        <a
+        <Link
           href="/download"
           className="hidden md:block px-5 py-2.5 rounded-full bg-[#4586F3] text-white text-sm
                      font-medium shadow-[0_4px_20px_rgba(69,134,243,0.3)] hover:bg-[#2F6FD6]
                      hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
         >
           Download APK
-        </a>
+        </Link>
 
         {/* Mobile toggle */}
         <button
@@ -75,22 +76,22 @@ export default function Navbar() {
       >
         <div className="py-6 flex flex-col gap-5">
           {navLinks.map((l) => (
-            <a
+            <Link
               key={`${l.label}-${l.href}`}
               href={l.href}
               onClick={() => setOpen(false)}
               className="text-[#5F6368] hover:text-[#202124] transition-colors font-medium"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a
+          <Link
             href="/download"
             onClick={() => setOpen(false)}
             className="w-fit px-6 py-3 rounded-full bg-[#4586F3] text-white text-sm font-medium"
           >
             Download APK
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

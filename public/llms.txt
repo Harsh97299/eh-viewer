@@ -1,0 +1,36 @@
+# EhViewer
+
+> EhViewer is a free, open-source manga and anime comic reader for Android (v1.14.6). Built by the community under GPLv3. No account required, no ads, no tracking.
+
+## Pages
+
+- [Home](https://ehviewer.app/): Overview of EhViewer features, download links, and FAQ highlights.
+- [Download](https://ehviewer.app/download): APK downloads for EhViewer 1.14.6 — all flavors (Default, Marshmallow), architectures (arm64-v8a, armeabi-v7a, x86_64, universal), debug symbols, and source archives. Released December 17, 2025.
+- [About](https://ehviewer.app/about): Project background, values, and community information.
+- [FAQ](https://ehviewer.app/faq): Answers to common questions about installation, offline reading, search, privacy, and legality.
+- [Contact](https://ehviewer.app/contact): Contact form and links to GitHub Issues and Discussions.
+- [Privacy Policy](https://ehviewer.app/privacy-policy): Full privacy policy — no personal data collected, no ads, no trackers.
+
+## Key Facts
+
+- **Version:** 1.14.6 (released 2025-12-17)
+- **License:** GNU General Public License v3 (GPLv3)
+- **Platforms:** Android 8.0+ (Default flavor); Android 6.0+ (Marshmallow flavor)
+- **Price:** Free
+- **Icon:** https://ehviewer.app/launcher_icon-web.svg
+- **Source code:** https://github.com/Ehviewer-Overhauled/Ehviewer
+- **Contact:** support@ehviewer.app
+
+## Features
+
+- Huge manga and anime comic catalog via configurable gallery sources
+- Offline downloads with configurable location and image resolution
+- Material Design 3 with Dynamic Color support
+- Advanced search: by keyword, tag, artist, year, category
+- Zoom reading, custom themes (dark mode, sepia), adjustable brightness
+- Privacy-first: no account, no ads, no analytics, all data stored locally on device
+- Open source: full source code auditable on GitHub
+
+## AI Crawler Permissions
+
+AI crawlers (GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot) are explicitly allowed per robots.txt.

@@ -5,12 +5,12 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import PhoneMockup from "../../components/PhoneMockup";
 import AnimateIn from "../../components/AnimateIn";
-import FAQSection from "../../components/FaqSection";
 
 export const metadata = {
   title: "About EhViewer — Free Open-Source Manga Reader",
   description:
     "The story behind EhViewer — a free, open-source manga reader built by the community to give fans worldwide a smooth, friendly reading experience.",
+  alternates: { canonical: "https://ehviewer.app/about" },
 };
 
 interface Value {
