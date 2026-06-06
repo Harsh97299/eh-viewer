@@ -129,7 +129,7 @@ export default function ProcessSection() {
                 src="/screenshots/screenshots-01.webp"
                 alt="EhViewer app screenshot"
                 fill
-                priority
+                loading="lazy"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="rounded-2xl object-cover object-top"
                 draggable={false}

@@ -35,9 +35,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
+  output: "standalone",
   experimental: {
-    optimizePackageImports: ["lucide-react"],
+    optimizePackageImports: ["lucide-react", "@tabler/icons-react", "motion"],
   },
   async headers() {
     return [

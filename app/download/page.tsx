@@ -16,7 +16,7 @@ export default function DownloadPage() {
     <main className="overflow-x-hidden bg-white">
       <Navbar />
       <h1 className="sr-only">Download EhViewer APK — Free Manga Reader for Android</h1>
-      <div className="pt-24">
+      <div className="pt-10">
         <DownloadCTA downloadFile="EhViewer-1.14.6-default-universal.apk" />
       </div>
       <DownloadDetails />
