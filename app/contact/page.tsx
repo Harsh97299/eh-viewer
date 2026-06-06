@@ -1,4 +1,5 @@
 import { Bug, MessageCircle } from "lucide-react";
+import { redirect } from "next/navigation";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import AnimateIn from "../../components/AnimateIn";
@@ -10,15 +11,45 @@ export const metadata = {
     "Get in touch with the EhViewer project — send a message or reach the maintainers and community on GitHub.",
 };
 
-// Inline server action keeps this page server-rendered. Structure only for now —
-// wire an email service (Resend, SMTP, etc.) where the TODO is marked.
+// Inline server action keeps this page server-rendered. Delivers the message via
+// Resend. Requires RESEND_API_KEY and CONTACT_TO_EMAIL env vars; the sending
+// domain (ehviewer.app) must be verified in Resend, otherwise use the
+// onboarding@resend.dev sandbox address as the `from`.
 async function submitContact(formData: FormData) {
   "use server";
-  // TODO: deliver the message via an email service.
-  // const name = formData.get('name')
-  // const email = formData.get('email')
-  // const subject = formData.get('subject')
-  // const message = formData.get('message')
+  const name = String(formData.get("name") ?? "").trim();
+  const email = String(formData.get("email") ?? "").trim();
+  const subject = String(formData.get("subject") ?? "").trim();
+  const message = String(formData.get("message") ?? "").trim();
+
+  if (!name || !email || !subject || !message) {
+    redirect("/contact?status=error");
+  }
+
+  try {
+    const { Resend } = await import("resend");
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    const { error } = await resend.emails.send({
+      from: "EhViewer Contact <contact@ehviewer.app>",
+      to: process.env.CONTACT_TO_EMAIL!,
+      replyTo: email,
+      subject: `[Contact] ${subject}`,
+      text: `From: ${name} <${email}>\n\n${message}`,
+    });
+
+    if (error) {
+      console.error("Resend error:", error);
+      redirect("/contact?status=error");
+    }
+  } catch (err) {
+    // redirect() throws internally — re-throw so Next can handle the navigation.
+    if (err && typeof err === "object" && "digest" in err) throw err;
+    console.error("Contact send failed:", err);
+    redirect("/contact?status=error");
+  }
+
+  redirect("/contact?status=sent");
 }
 
 const inputClasses =
@@ -47,7 +78,13 @@ const githubCards = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ status?: string }>;
+}) {
+  const { status } = await searchParams;
+
   return (
     <>
       <Navbar />
@@ -77,6 +114,22 @@ export default function ContactPage() {
                 feedback, ideas, and bug reports are always welcome.
               </p>
             </AnimateIn>
+
+            {status === "sent" && (
+              <AnimateIn>
+                <div className="mt-8 rounded-xl border border-green/30 bg-green/10 px-4 py-3 text-sm text-foreground">
+                  Thanks — your message was sent. We&apos;ll get back to you soon.
+                </div>
+              </AnimateIn>
+            )}
+            {status === "error" && (
+              <AnimateIn>
+                <div className="mt-8 rounded-xl border border-red/30 bg-red/10 px-4 py-3 text-sm text-foreground">
+                  Something went wrong sending your message. Please try again, or
+                  reach us on GitHub below.
+                </div>
+              </AnimateIn>
+            )}
 
             <AnimateIn delay={100}>
               <form action={submitContact} className="mt-10 space-y-5">
