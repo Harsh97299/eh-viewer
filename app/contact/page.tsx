@@ -31,7 +31,7 @@ async function submitContact(formData: FormData) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     const { error } = await resend.emails.send({
-      from: "EhViewer Contact <noreply@contact.ehviewer.io>",
+      from: "EhViewer Contact <noreply@ehviewer.io>",
       to: process.env.CONTACT_TO_EMAIL!,
       replyTo: email,
       subject: `[Contact] ${subject}`,

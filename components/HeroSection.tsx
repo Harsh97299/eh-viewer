@@ -110,83 +110,83 @@ export default function HeroSection() {
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center lg:justify-between gap-12 lg:gap-10">
         {/* Main content */}
         <div className="text-center lg:text-left max-w-xl w-full lg:flex-1">
-        {/* Headline */}
-        <h1
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#202124]
+          {/* Headline */}
+          <h1
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#202124]
                      leading-[1.08] tracking-[-0.02em] mb-6"
-        >
-          EhViewer: Read Manga <br className="hidden sm:block" />
-          Anytime,{" "}
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4586F3] via-[#35AA53] to-[#EB4334]">
-            Anywhere.
-          </span>
-        </h1>
+          >
+            EhViewer: Read Manga <br className="hidden sm:block" />
+            Anytime,{" "}
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4586F3] via-[#35AA53] to-[#EB4334]">
+              Anywhere.
+            </span>
+          </h1>
 
-        {/* Subtitle */}
-        <p
-          className="text-[#5F6368] text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
-          style={{ animation: "heroFadeInUp 0.6s ease 0.2s both" }}
-        >
-          Your next favorite manga adventure starts here. EhViewer packs a huge
-          catalog, offline downloads, zoom-perfect reading, and custom themes
-          into one free,{" "}
-          <Link href="/about" className="text-[#4586F3] hover:underline">
-            open-source
-          </Link>{" "}
-          app. Warning: may cause accidental all-night reading sessions.
-        </p>
+          {/* Subtitle */}
+          <p
+            className="text-[#5F6368] text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
+            style={{ animation: "heroFadeInUp 0.6s ease 0.2s both" }}
+          >
+            Your next favorite manga adventure starts here. EhViewer packs a
+            huge catalog, offline downloads, zoom-perfect reading, and custom
+            themes into one free,{" "}
+            <Link href="/about" className="text-[#4586F3] hover:underline">
+              open-source
+            </Link>{" "}
+            app. Warning: may cause accidental all-night reading sessions.
+          </p>
 
-        {/* CTA buttons */}
-        <div
-          className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10"
-          style={{ animation: "heroFadeInUp 0.6s ease 0.28s both" }}
-        >
-          <a
-            href="/download"
-            className="flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#4586F3] text-white
+          {/* CTA buttons */}
+          <div
+            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10"
+            style={{ animation: "heroFadeInUp 0.6s ease 0.28s both" }}
+          >
+            <a
+              href="/download"
+              className="flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#4586F3] text-white
                        font-semibold text-[15px] shadow-[0_8px_32px_rgba(69,134,243,0.3)]
                        hover:bg-[#2F6FD6] hover:scale-[1.04] active:scale-[0.97]
                        transition-all duration-200"
-          >
-            <Download size={18} />
-            Download APK
-          </a>
+            >
+              <Download size={18} />
+              Download APK
+            </a>
 
-          <a
-            href="#features"
-            className="flex items-center gap-3 px-7 py-3.5 rounded-full bg-white text-[#202124]
+            <a
+              href="#features-section"
+              className="flex items-center gap-3 px-7 py-3.5 rounded-full bg-white text-[#202124]
                        font-semibold text-[15px] border border-[#E8EAED]
                        shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:border-[#4586F3]
                        hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
-          >
-            <BookOpen size={16} className="text-[#4586F3]" />
-            View Features
-          </a>
-        </div>
-
-        {/* Social proof */}
-        <div
-          className="flex items-center justify-center lg:justify-start gap-3"
-          style={{ animation: "heroFadeIn 0.6s ease 0.45s both" }}
-        >
-          <div className="flex -space-x-2">
-            {socialProofAvatars.map((src, i) => (
-              <Image
-                key={i}
-                src={src}
-                alt=""
-                width={44}
-                height={44}
-                className="w-11 h-11 rounded-full border-2 border-white shadow-sm object-cover bg-[#F1F3F4]"
-              />
-            ))}
+            >
+              <BookOpen size={16} className="text-[#4586F3]" />
+              View Features
+            </a>
           </div>
-          <p className="text-sm text-[#5F6368]">
-            <span className="font-bold text-[#202124]">2M+</span> readers reading
-            with EhViewer worldwide
-          </p>
+
+          {/* Social proof */}
+          <div
+            className="flex items-center justify-center lg:justify-start gap-3"
+            style={{ animation: "heroFadeIn 0.6s ease 0.45s both" }}
+          >
+            <div className="flex -space-x-2">
+              {socialProofAvatars.map((src, i) => (
+                <Image
+                  key={i}
+                  src={src}
+                  alt=""
+                  width={44}
+                  height={44}
+                  className="w-11 h-11 rounded-full border-2 border-white shadow-sm object-cover bg-[#F1F3F4]"
+                />
+              ))}
+            </div>
+            <p className="text-sm text-[#5F6368]">
+              <span className="font-bold text-[#202124]">2M+</span> readers
+              reading with EhViewer worldwide
+            </p>
+          </div>
         </div>
-      </div>
 
         {/* Phone mockup */}
         <div

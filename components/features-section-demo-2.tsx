@@ -68,7 +68,10 @@ export default function FeaturesSectionDemo() {
     },
   ];
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
+    <section
+      id="features-section"
+      className="py-20 bg-white relative overflow-hidden"
+    >
       {/* Ambient glows */}
       <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-[#4586F3]/12 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-[#EB4334]/10 blur-[100px] pointer-events-none" />
@@ -86,7 +89,12 @@ export default function FeaturesSectionDemo() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 py-10 max-w-7xl mx-auto ">
         {features.map((feature, index) => (
-          <Feature key={feature.title} {...feature} index={index} color={brandColors[index % 4]} />
+          <Feature
+            key={feature.title}
+            {...feature}
+            index={index}
+            color={brandColors[index % 4]}
+          />
         ))}
       </div>
     </section>

@@ -14,7 +14,7 @@
 /coverage
 
 # next.js
-/.next/
+
 /out/
 
 # production
@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.claude
+AGENTS.md
+CLAUDE.md
+README.md
+.gitignore
