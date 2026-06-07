@@ -10,10 +10,6 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
-
-# next.js
 
 
 # misc
@@ -32,9 +28,7 @@ yarn-error.log*
 # vercel
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+
 
 .claude
 AGENTS.md
