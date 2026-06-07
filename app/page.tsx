@@ -11,28 +11,22 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "EhViewer",
-  url: "https://ehviewer.app",
-  downloadUrl: "https://ehviewer.app/download",
+  url: "https://ehviewer.io",
+  downloadUrl: "https://ehviewer.io/download",
   softwareVersion: "1.14.6",
   datePublished: "2025-12-17",
   applicationCategory: "BookApplication",
   operatingSystem: "Android",
   description:
     "EhViewer is a free, open-source manga & anime comic reader for Android. Huge catalog, offline downloads, zoom reading, customizable themes, and privacy-first browsing.",
-  image: "https://ehviewer.app/launcher_icon-web.png",
+  image: "https://ehviewer.io/launcher_icon-web.png",
   offers: {
     "@type": "Offer",
     price: "0",
     priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
   },
   license: "https://www.gnu.org/licenses/gpl-3.0.html",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    ratingCount: "9400",
-    bestRating: "5",
-    worstRating: "1",
-  },
 };
 
 export default function Home() {

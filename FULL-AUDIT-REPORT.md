@@ -1,421 +1,434 @@
 # EhViewer — Full SEO Audit Report
 
-**Audit Date:** June 6, 2026
-**Site:** EhViewer — Free Manga Reader for Android & iOS
-**URL:** https://ehviewer.app (audited via localhost:3000)
-**Framework:** Next.js 16.2.6, React 19, Tailwind CSS v4
-**Business Type:** Software / Mobile App
+**Audit Date:** June 7, 2026
+**Previous Audit:** June 6, 2026 (Score: 58/100)
+**Site:** EhViewer — Free Manga Reader for Android
+**URL:** https://ehviewer.io
+**Framework:** Next.js 16.2.6, React 19.2.4, Tailwind CSS v4
+**Business Type:** Software / Mobile App (non-local)
 **Pages Audited:** 6 — `/`, `/about`, `/contact`, `/download`, `/faq`, `/privacy-policy`
 
 ---
 
 ## Executive Summary
 
-### SEO Health Score: 58 / 100
+### SEO Health Score: 67 / 100 (up from 58)
 
 | Category | Weight | Score | Weighted |
 |----------|--------|-------|----------|
-| Technical SEO | 22% | 52/100 | 11.4 |
-| Content Quality | 23% | 64/100 | 14.7 |
-| On-Page SEO | 20% | 62/100 | 12.4 |
-| Schema / Structured Data | 10% | 65/100 | 6.5 |
-| Performance (CWV) | 10% | 60/100 | 6.0 |
-| AI Search Readiness | 10% | 54/100 | 5.4 |
-| Images | 5% | 40/100 | 2.0 |
-| **Total** | **100%** | | **58.4** |
+| Technical SEO | 22% | 78/100 | 17.2 |
+| Content Quality | 23% | 68/100 | 15.6 |
+| On-Page SEO | 20% | 74/100 | 14.8 |
+| Schema / Structured Data | 10% | 48/100 | 4.8 |
+| Performance (CWV) | 10% | 65/100 | 6.5 |
+| AI Search Readiness | 10% | 61/100 | 6.1 |
+| Images | 5% | 45/100 | 2.3 |
+| **Total** | **100%** | | **67.2** |
 
-### Top 5 Critical Issues
+### Issues Fixed Since Last Audit (June 6)
 
-1. **No robots.txt** — crawlers have no guidance, no sitemap reference, no AI crawler rules
-2. **No sitemap.xml** — search engines must discover pages solely through link crawling
-3. **No security HTTP headers** — zero security headers set (CSP, HSTS, X-Frame-Options, etc.)
-4. **Contact form is non-functional** — server action is a no-op; submitted messages are silently dropped
-5. **Missing H1 tags** on `/download` and `/faq` — two highest-intent pages lack primary headings
+- robots.ts created with proper rules and AI crawler permissions
+- sitemap.ts created with all 6 pages
+- Security headers added (HSTS, CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy)
+- Contact form wired to Resend email service
+- Canonical URLs added to all pages
+- llms.txt created
+- FAQ answers expanded to 100-180 words each
+- H1 tags added (sr-only) to /download and /faq
+
+### Top 5 Critical Issues (Remaining)
+
+1. **No og:image** — OpenGraph and Twitter card metadata have no image; social shares render blank previews
+2. **Missing WebSite schema** — no site-level structured data for Sitelinks Search Box eligibility
+3. **Missing Organization schema** — no brand entity record for Knowledge Panel eligibility
+4. **About page thin content** — ~280 words with no verifiable specifics, fails E-E-A-T
+5. **LCP image not prioritized** — hero phone mockup uses lazy loading instead of `priority`
 
 ### Top 5 Quick Wins
 
-1. Create `app/robots.ts` and `app/sitemap.ts` (30 min, Critical impact)
-2. Add H1 to `/download` and `/faq` pages (15 min, High impact)
-3. Fix Footer "Source Code" link to point to GitHub (2 min, Medium impact)
-4. Remove deprecated `keywords` meta tag from layout.tsx (2 min, Low impact)
-5. Fix grammar error on `/about` page (2 min, Low impact)
+1. Add `openGraph.images` and `twitter.images` to layout.tsx metadata (5 min)
+2. Add `availability` to SoftwareApplication `offers` schema (2 min)
+3. Add `priority` prop to hero PhoneMockup image (2 min)
+4. Use static `lastModified` dates in sitemap.ts instead of `new Date()` (5 min)
+5. Add WebSite + Organization JSON-LD to layout.tsx (15 min)
 
 ---
 
 ## 1. Technical SEO
 
-**Score: 52/100**
+**Score: 78/100** (up from 52)
 
-### CRITICAL
+### Crawlability — PASS
 
-| # | Issue | Details |
-|---|-------|---------|
-| T-C1 | No robots.txt | No `app/robots.ts` or `public/robots.txt` exists. APK files in `/downloads/` are crawlable, wasting crawl budget. |
-| T-C2 | No sitemap.xml | No `app/sitemap.ts` or static sitemap. All 6 pages must be discovered by link crawling only. |
-| T-C3 | No security headers | Zero security headers: no CSP, no X-Frame-Options, no X-Content-Type-Options, no HSTS, no Referrer-Policy, no Permissions-Policy. |
+- robots.ts correctly structured with proper rules
+- `/downloads/` directory blocked from crawling
+- AI crawlers explicitly allowed (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot)
+- CCBot (training crawler) blocked
+- Sitemap reference present and correct
+- No middleware.ts — no edge-based redirect risks
 
-### HIGH
+### Indexability — PASS with minor issues
 
-| # | Issue | Details |
-|---|-------|---------|
-| T-H1 | OG image missing | `layout.tsx` references `/og-image.png` but the file does not exist in `public/`. All social shares show a broken image. |
-| T-H2 | `<a>` instead of `<Link>` | Navbar and Footer use plain `<a href>` for all internal links — no route prefetching, full page reloads, loss of App Router shared layout caching. Hurts INP. |
-| T-H3 | No canonical tags | No page declares `alternates.canonical`. If `www` and non-`www` versions resolve, Google must guess the canonical. |
-| T-H4 | AnimateIn CLS risk | All major content sections start with `opacity-0` + translateY via the `AnimateIn` client component. The opacity transition post-hydration risks CLS in the 0.1–0.25 range. |
+| # | Issue | Severity |
+|---|-------|----------|
+| T-1 | `lastModified: new Date()` in sitemap.ts regenerates timestamps on every build regardless of content changes — degrades recrawl signal | Medium |
+| T-2 | `priority` and `changeFrequency` fields in sitemap are deprecated (Google ignores both) | Low |
+| T-3 | No custom 404/not-found page | Low |
+| T-4 | No IndexNow protocol for Bing/Yandex instant URL submission | Low |
 
-### MEDIUM
+### Security Headers — PASS
 
-| # | Issue | Details |
-|---|-------|---------|
-| T-M1 | `background-attachment: fixed` on body | Disables GPU compositing on iOS Safari and Chrome Android — causes full-page repaints on scroll. Hurts INP. |
-| T-M2 | Scroll listeners + multiple setIntervals | Homepage runs 2 concurrent `setInterval` timers (testimonials 2s, PhoneMockup 2.5s) plus a Framer Motion scroll listener. Combined main-thread pressure. |
-| T-M3 | Apple touch icon is SVG | `layout.tsx` sets `icons.apple` to an SVG. Some iOS versions don't support SVG apple-touch-icons — should be 180x180 PNG. |
+All headers correctly configured in next.config.ts:
+- `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`
+- `X-Content-Type-Options: nosniff`
+- `X-Frame-Options: SAMEORIGIN`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `Permissions-Policy: camera=(), microphone=(), geolocation=(), browsing-topics=()`
+- `Content-Security-Policy` with tight directives
 
-### LOW
+### URL Structure — PASS
 
-| # | Issue | Details |
-|---|-------|---------|
-| T-L1 | No IndexNow protocol | No IndexNow API key for Bing/Yandex instant URL submission. |
-| T-L2 | `keywords` meta tag populated | Google has ignored this since 2009. Wastes bytes and is used as a spam signal. |
+Clean, flat URL hierarchy. No trailing slashes, no query parameters in canonical URLs. `metadataBase` correctly set to `https://ehviewer.io`.
+
+### Mobile Optimization — PASS
+
+Viewport correctly configured via `Viewport` export. Tailwind responsive classes used consistently. Touch targets adequately sized.
+
+### Core Web Vitals Readiness
+
+| Metric | Risk | Primary Driver |
+|--------|------|----------------|
+| LCP | **HIGH** | PhoneMockup is likely LCP element — all hero images use `loading="lazy"` with no `priority` prop |
+| INP | MEDIUM | 8 `'use client'` components on homepage cause substantial hydration work |
+| CLS | LOW | Geist font uses `adjustFontFallback: true` — correct CLS mitigation |
+
+| # | Issue | Severity |
+|---|-------|----------|
+| T-5 | No `priority` prop on hero LCP image (PhoneMockup) — forces lazy loading on above-fold content | High |
+| T-6 | 8 `'use client'` components on homepage — heavy client JS bundle delays INP | Medium |
+| T-7 | Animation-heavy hero without `prefers-reduced-motion` guards on inline `style` animations | Medium |
+
+### JS Rendering — PASS
+
+Next.js App Router with `output: standalone` defaults to SSR. All metadata-exporting pages are statically rendered. Content is not gated behind JS execution for crawlers.
 
 ### What's Working Well
 
-- `metadataBase` correctly set to `https://ehviewer.app`
-- Viewport meta tag properly configured
+- `metadataBase` correctly set
+- Viewport meta properly configured
 - `display: "swap"` on Geist font prevents FOIT
-- `prefers-reduced-motion` media query suppresses all animations (accessibility + CLS mitigation)
+- `preload: true` and `adjustFontFallback: true` on font
 - All external links use `rel="noopener noreferrer"`
-- FAQ accordion keeps answers in DOM when closed (`grid-rows-[0fr]`) — crawlers can read all content
-- Server-side rendering for all page content via App Router
+- Server-side rendering for all page content
+- Zero third-party scripts
 
 ---
 
 ## 2. Content Quality & E-E-A-T
 
-**Score: 64/100**
+**Score: 68/100** (up from 64)
 
-### Overall E-E-A-T: 56/100
+### E-E-A-T Assessment
 
-| Dimension | Score | Key Gap |
-|-----------|-------|---------|
-| Experience | 44/80 | Testimonials appear fabricated; no verifiable user identities |
-| Expertise | 55/100 | Good technical detail on /download; weak on /about |
-| Authoritativeness | 51/100 | No external reviews, press, or GitHub stats cited |
-| Trustworthiness | 82/120 | Open-source is strong; broken contact form is critical weakness |
+| Factor | Score | Weight | Key Gap |
+|--------|-------|--------|---------|
+| Experience | 44/100 | 20% | No author bylines, no first-hand signals, unverified "2M+ readers" claim |
+| Expertise | 62/100 | 25% | Strong FAQ technical detail; weak elsewhere |
+| Authoritativeness | 55/100 | 25% | GitHub links present but no external reviews, press, or stats cited |
+| Trustworthiness | 76/100 | 30% | Privacy policy well-structured; contact form functional; GPL licensed |
 
-### Page-by-Page Content Scores
+**Weighted E-E-A-T Score: 62/100**
 
-| Page | Content | E-E-A-T | Word Count | Status |
-|------|---------|---------|------------|--------|
-| `/` (Homepage) | 74 | 61 | ~700 | PASS |
-| `/about` | 52 | 38 | ~320 | THIN CONTENT |
-| `/contact` | 68 | 55 | ~220 | THIN |
-| `/download` | 81 | 70 | ~600+ | STRONG |
-| `/faq` | 72 | 60 | ~500 | PASS |
-| `/privacy-policy` | 78 | 72 | ~650 | STRONG |
+### Per-Page Assessment
 
-### CRITICAL
+| Page | Words | Quality | Key Issue |
+|------|-------|---------|-----------|
+| `/` | ~700 | PASS | aggregateRating (4.8/9400) unsubstantiated on-page |
+| `/about` | ~280 | **THIN** | No specifics — no dates, contributors, stats, timeline |
+| `/contact` | ~220 | PASS | Acceptable for contact page type |
+| `/download` | ~600+ | STRONG | Excellent version-specific detail with changelogs |
+| `/faq` | ~1200+ | STRONG | 8 detailed answers, technically accurate |
+| `/privacy-policy` | ~650 | STRONG | 10 numbered sections, dated, contact info |
 
-| # | Issue | Details |
-|---|-------|---------|
-| C-C1 | Contact form is non-functional | Server action at `app/contact/page.tsx:15-22` has only a TODO comment. Messages are silently dropped. Direct E-E-A-T trust violation. |
+### Findings
 
-### HIGH
+| # | Issue | Severity |
+|---|-------|----------|
+| C-1 | `/about` is thin content (~280 words) with no verifiable specifics — no founding context, contributor count, GitHub stars, version history | High |
+| C-2 | `aggregateRating` in JSON-LD (4.8 stars, 9,400 ratings) has no visible on-page sourcing — trustworthiness risk | Medium |
+| C-3 | "2M+ readers" claim in hero is unverified — AI systems will not cite as fact | Medium |
+| C-4 | No author attribution anywhere on site — suppresses Experience and Authoritativeness | Medium |
+| C-5 | iOS "Coming Soon" section on download page has misleading detail for unreleased product | Low |
+| C-6 | Homepage lacks standalone, citable definitional sentence about EhViewer | Low |
 
-| # | Issue | Details |
-|---|-------|---------|
-| C-H1 | `/about` is thin content | ~320 words with no named contributors, dates, GitHub stats, or project timeline. Lowest E-E-A-T score (38/100). |
-| C-H2 | Fabricated testimonials | 12 testimonials with unverifiable names (Kenji, Aisha, Marco) and generic avatars. Under Sept 2025 QRG, fake reviews are a direct trust violation. |
-| C-H3 | AggregateRating unsubstantiated | Schema claims 4.8 stars / 9,400 ratings but no source is cited on-page. Google may treat this as spammy structured data. |
-| C-H4 | "2M+ readers" claim unverified | No external source or evidence. AI systems will not cite this as fact. |
-| C-H5 | Missing H1 on /download | Highest-intent page has no H1 tag — only H2s from child components. |
-| C-H6 | Missing H1 on /faq | FAQSection renders H2 only. No H1 exists on the page. |
+### AI Citation Readiness: 54/100
 
-### MEDIUM
-
-| # | Issue | Details |
-|---|-------|---------|
-| C-M1 | iOS "Coming Soon" misleading | Download page has full iOS installation guide for an app that doesn't exist yet. |
-| C-M2 | Homepage says "Android & iOS" | Title/meta says both platforms but iOS isn't available — expectation mismatch. |
-| C-M3 | H3 misused in testimonials | `<h3>` wraps testimonial quote text instead of `<blockquote>` — semantic noise. |
-| C-M4 | Grammar error on /about | "EhViewer is open source means fans helping fans" — should be "being open source." |
-| C-M5 | Meta description too long on /download | 196 characters — will be truncated around 155-160 in SERPs. |
-| C-M6 | support@ehviewer.app only on /privacy-policy | Only contact email on the site, not shown on /contact page. |
-
-### LOW
-
-| # | Issue | Details |
-|---|-------|---------|
-| C-L1 | No inline links from FAQ answers to /download | FAQ answers reference the download page but don't link to it. |
-| C-L2 | No contextual links from homepage to /about, /contact, /privacy-policy | These pages get zero editorial link equity from the main content. |
-| C-L3 | Footer "Source Code" points to /download | Should link to GitHub repository. |
+The FAQ and Download pages are citation-ready. The Homepage, About, and Contact pages lack declarative, fact-dense sentence structures that LLM citation systems extract.
 
 ---
 
 ## 3. On-Page SEO
 
-**Score: 62/100**
+**Score: 74/100** (up from 62)
 
-### Title Tags
+### Title Tags — All PASS
 
-| Page | Title | Length | Verdict |
-|------|-------|--------|---------|
-| `/` | EhViewer — Free Manga Reader for Android & iOS | 48 | GOOD |
-| `/about` | About EhViewer — Free Open-Source Manga Reader \| EhViewer | ~58 | GOOD |
-| `/contact` | Contact EhViewer — Reach the Team & Community \| EhViewer | ~57 | GOOD |
-| `/download` | Download EhViewer 1.14.6 APK — Free Manga Reader \| EhViewer | ~60 | EXCELLENT |
-| `/faq` | EhViewer FAQ — Install, Offline Reading & Privacy \| EhViewer | ~60 | GOOD |
-| `/privacy-policy` | EhViewer Privacy Policy — Privacy-First Manga Reader \| EhViewer | ~64 | SLIGHTLY LONG |
+| Page | Title | Length |
+|------|-------|--------|
+| `/` | EhViewer — Free Manga Reader for Android (iOS Coming Soon) | 58 |
+| `/about` | About EhViewer — Free Open-Source Manga Reader \| EhViewer | 58 |
+| `/contact` | Contact EhViewer — Reach the Team & Community \| EhViewer | 57 |
+| `/download` | Download EhViewer 1.14.6 APK — Free Manga Reader \| EhViewer | 60 |
+| `/faq` | EhViewer FAQ — Install, Offline Reading & Privacy \| EhViewer | 60 |
+| `/privacy-policy` | EhViewer Privacy Policy — Privacy-First Manga Reader \| EhViewer | 64 |
 
 ### Meta Descriptions
 
-| Page | Length | Verdict |
-|------|--------|---------|
-| `/` | 169 | SLIGHTLY LONG — trim ~15 chars |
-| `/about` | 146 | GOOD |
-| `/contact` | 106 | SHORT — expand to ~150 |
-| `/download` | 196 | TOO LONG — truncated in SERPs |
-| `/faq` | 145 | GOOD |
-| `/privacy-policy` | 127 | SLIGHTLY SHORT |
+| Page | Length | Status |
+|------|--------|--------|
+| `/` | 169 | Slightly long — trim ~15 chars |
+| `/about` | 146 | Good |
+| `/contact` | 106 | Short — expand to ~150 |
+| `/download` | 163 | Good |
+| `/faq` | 145 | Good |
+| `/privacy-policy` | 127 | Slightly short |
 
 ### Heading Structure
 
 | Page | H1 | Status |
 |------|----|--------|
 | `/` | "EhViewer: Read Manga Anytime, Anywhere." | PASS |
-| `/about` | "About EhViewer" | PASS (sparse) |
+| `/about` | "About EhViewer" | PASS |
 | `/contact` | "Contact EhViewer" | PASS |
-| `/download` | **MISSING** | FAIL |
-| `/faq` | **MISSING** | FAIL |
-| `/privacy-policy` | "Privacy Policy" | PASS (generic) |
+| `/download` | "Download EhViewer APK..." (sr-only) | PASS (marginal) |
+| `/faq` | "EhViewer FAQ..." (sr-only) | PASS (marginal) |
+| `/privacy-policy` | "Privacy Policy" | PASS |
 
 ### Internal Linking
 
-- Navbar links: Home, About, Contact, FAQ, Privacy Policy (no Download in main nav)
-- Footer links cover all pages + external GitHub links
-- CTA buttons on / and /about link to /download
-- FAQ answers reference /download but don't link to it
-- No breadcrumb navigation on any page
+| Signal | Status |
+|--------|--------|
+| Navbar links to all main pages | PASS |
+| Footer covers all pages + external GitHub | PASS |
+| CTA buttons link to /download | PASS |
+| FAQ answers have inline CTAs to /download | PASS |
+| Canonical URLs on all pages | PASS |
+| Breadcrumb navigation | MISSING |
+
+### Findings
+
+| # | Issue | Severity |
+|---|-------|----------|
+| O-1 | No breadcrumb navigation on any subpage | High |
+| O-2 | /download and /faq H1 tags are sr-only (visually hidden) — visible H1 preferred | Low |
+| O-3 | Homepage meta description 169 chars — will be truncated in some SERPs | Low |
+| O-4 | /contact meta description too short at 106 chars | Low |
 
 ---
 
 ## 4. Schema & Structured Data
 
-**Score: 65/100**
+**Score: 48/100** (down from 65 — stricter evaluation of missing schemas)
 
 ### What Exists
 
-| Schema | Page(s) | Status |
-|--------|---------|--------|
-| SoftwareApplication | `/` | Present but **incomplete** — missing `url`, `downloadUrl`, `softwareVersion`, `image`, `datePublished` |
-| FAQPage | All 6 pages | Present via FAQSection — **duplicated** on pages where FAQ is not primary content |
+| Schema | Page | Status |
+|--------|------|--------|
+| SoftwareApplication | `/` | PASS — valid with one warning: `offers` missing `availability` property |
+| FAQPage | `/` and `/faq` | PASS — correctly scoped to rendered FAQ items |
 
 ### Validation Issues
 
-| Issue | Severity |
-|-------|----------|
-| SoftwareApplication missing `url`, `downloadUrl`, `softwareVersion`, `image` | HIGH — blocks App rich result card |
-| FAQPage duplicated on /contact, /privacy-policy, /about, /download | HIGH — schema noise on non-FAQ pages |
-| FAQSection is `'use client'` — JSON-LD injected after hydration | MEDIUM — server-rendering is more reliable for crawlers |
-| Google restricted FAQPage rich results to govt/health sites (Aug 2023) | INFO — still valuable for AI/GEO |
+| # | Issue | Severity |
+|---|-------|----------|
+| S-1 | `offers` block missing `availability: "https://schema.org/InStock"` | Low |
+| S-2 | FAQSection is `'use client'` — JSON-LD injected client-side instead of SSR | Medium |
+| S-3 | Google restricted FAQPage rich results to govt/health sites (Aug 2023) — still valuable for GEO | Info |
 
-### Missing Schema Opportunities
+### Missing Schema — Critical Gaps
 
-| Schema | Page | Priority | Impact |
-|--------|------|----------|--------|
-| WebSite with SearchAction | Layout (all pages) | HIGH | Sitelinks Searchbox eligibility |
-| Organization | `/about` | HIGH | Knowledge Panel entity eligibility |
-| BreadcrumbList | All inner pages | HIGH | Breadcrumb rich results in SERPs |
-| HowTo | `/download` | HIGH | How-to rich results for installation guides |
-| ContactPage | `/contact` | MEDIUM | Semantic page typing |
+| Schema | Where | Severity | Impact |
+|--------|-------|----------|--------|
+| **WebSite** with SearchAction | `app/layout.tsx` | Critical | Sitelinks Search Box eligibility |
+| **og:image / twitter:image** | `app/layout.tsx` metadata | Critical | Social shares render blank |
+| **Organization** with logo + sameAs | `app/layout.tsx` | High | Knowledge Panel, brand entity recognition |
+| **BreadcrumbList** | All 5 subpages | High | Breadcrumb rich results in SERPs |
+| SoftwareApplication on /download | `app/download/page.tsx` | Medium | Reinforce download page rich result |
+
+### Recommended JSON-LD Additions
+
+**WebSite + Organization (add to layout.tsx):**
+
+```json
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://ehviewer.io/#website",
+      "url": "https://ehviewer.io",
+      "name": "EhViewer",
+      "description": "Free open-source manga reader for Android"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://ehviewer.io/#organization",
+      "name": "EhViewer",
+      "url": "https://ehviewer.io",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ehviewer.io/launcher_icon-web.png"
+      },
+      "sameAs": [
+        "https://github.com/Ehviewer-Overhauled/Ehviewer"
+      ]
+    }
+  ]
+}
+```
+
+**BreadcrumbList (add to each subpage, example for /faq):**
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ehviewer.io" },
+    { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://ehviewer.io/faq" }
+  ]
+}
+```
 
 ---
 
-## 5. Performance
+## 5. Performance (CWV)
 
-**Score: 60/100**
+**Score: 65/100**
 
-### CWV Risk Assessment
+### Risk Assessment
 
-| Metric | Risk | Primary Driver |
-|--------|------|----------------|
-| LCP | MEDIUM | PhoneMockup is client-rendered; first screenshot not preloaded; 8 images fetched eagerly |
-| INP | LOW-MEDIUM | 2 concurrent setIntervals + scroll listener + `background-attachment: fixed` on mobile |
-| CLS | LOW-MEDIUM | `AnimateIn` opacity-0 transitions; missing `width`/`height` on `<img>` elements |
+| Metric | Risk Level | Driver |
+|--------|-----------|--------|
+| LCP | **HIGH** | Hero PhoneMockup and floating avatars all use `loading="lazy"` — no `priority` on LCP element |
+| INP | MEDIUM | 8 `'use client'` components on homepage; substantial hydration work before interactive |
+| CLS | LOW | Font fallback adjustment correct; no layout shift from fonts |
 
-### HIGH Impact Issues
+### Findings
 
-| # | Issue | Details |
-|---|-------|---------|
-| P-H1 | PhoneMockup loads all 8 screenshots | All 8 `<img>` elements rendered eagerly with no `loading` attribute. Only 1 is visible. |
-| P-H2 | `motion` library (~60-80 kB gzipped) | Imported solely for one scroll-driven 3D tilt effect in ProcessSection. Could be CSS-only. |
-| P-H3 | OG image missing | `/og-image.png` referenced but doesn't exist — broken social share previews. |
-
-### MEDIUM Impact Issues
-
-| # | Issue | Details |
-|---|-------|---------|
-| P-M1 | `@tabler/icons-react` not in `optimizePackageImports` | `next.config.ts` optimizes `lucide-react` but not Tabler — may include full icon set. |
-| P-M2 | `background-attachment: fixed` on body | Disables GPU compositing on mobile, causes full-page repaints on scroll. |
-| P-M3 | No preload for LCP image | PhoneMockup is a client component — Next.js can't auto-detect the LCP image for preload. |
-| P-M4 | JSON-LD in client component | FAQSection emits JSON-LD via `dangerouslySetInnerHTML` in a `'use client'` component. |
-
-### LOW Impact Issues
-
-| # | Issue | Details |
-|---|-------|---------|
-| P-L1 | No `loading="lazy"` on below-fold images | HeroSection avatars (10 images), testimonial avatars (12 images), ProcessSection screenshot. |
-| P-L2 | No `width`/`height` attributes on `<img>` | Uses Tailwind classes for sizing; browser can't infer dimensions during HTML parsing. |
-| P-L3 | `will-change: transform` applied broadly | CSS selector matches all float-animated elements simultaneously — excessive GPU layer promotion. |
+| # | Issue | Severity |
+|---|-------|----------|
+| P-1 | No `priority` prop on LCP image in HeroSection — PhoneMockup is likely LCP element | High |
+| P-2 | 8 `'use client'` components composed on homepage — heavy client JS bundle | Medium |
+| P-3 | Inline `style` animations on hero elements bypass `prefers-reduced-motion` | Medium |
+| P-4 | `motion` library (~60-80 kB gzip) imported for one scroll effect in ProcessSection | Medium |
 
 ### What's Working Well
 
-- Zero third-party scripts (no analytics, tag managers, ad networks, or chat widgets)
-- All images use WebP format
-- `next/font` with `display: "swap"`, `preload: true`, `adjustFontFallback: true`
-- Only one font family loaded (Geist Sans, Latin subset)
-- No imported third-party CSS
+- Zero third-party scripts (no analytics, ads, chat widgets)
+- All user-facing images in WebP format
+- Single font family (Geist Latin) with optimal loading config
+- `optimizePackageImports` configured for lucide-react and @tabler/icons-react
+- Server-side rendering for all content
 
 ---
 
 ## 6. AI Search Readiness (GEO)
 
-**Score: 54/100**
+**Score: 61/100** (up from 54)
 
 ### GEO Dimension Breakdown
 
-| Dimension | Score |
-|-----------|-------|
-| Citability | 62/100 |
-| Structural Readability | 58/100 |
-| Multi-Modal Content | 40/100 |
-| Authority & Brand Signals | 50/100 |
-| Technical Accessibility | 55/100 |
+| Dimension | Score | Weight | Weighted |
+|-----------|-------|--------|----------|
+| Technical Accessibility | 85/100 | 20% | 17.0 |
+| Citability | 58/100 | 25% | 14.5 |
+| Structural Readability | 65/100 | 20% | 13.0 |
+| Authority & Brand Signals | 55/100 | 20% | 11.0 |
+| Multi-Modal Content | 35/100 | 15% | 5.3 |
 
 ### Platform-Specific Scores
 
 | Platform | Score | Key Gap |
 |----------|-------|---------|
-| Google AI Overviews | 52/100 | Missing HowTo schema, FAQ answers too short, no sitemap |
-| ChatGPT (web search) | 48/100 | No llms.txt, no Wikipedia entity, sparse brand mentions |
-| Perplexity | 55/100 | Good SSR, but explicit Allow needed in robots.txt |
-| Bing Copilot | 50/100 | Missing Organization schema, no BreadcrumbList, no OG image |
+| Google AI Overviews | 62 | FAQ accordion collapse is a passage extraction risk |
+| Perplexity | 68 | PerplexityBot allowed; llms.txt present; FAQ citable |
+| Bing Copilot | 55 | No Organization schema; no structured author attribution |
+| ChatGPT | 50 | No Wikipedia entity; no llms.txt Citations block |
 
-### Key Findings
+### AI Crawler Access — PASS
+
+robots.ts correctly grants explicit Allow rules for GPTBot, OAI-SearchBot, ClaudeBot, and PerplexityBot. CCBot blocked.
+
+### llms.txt — PRESENT, INCOMPLETE
+
+Present at `public/llms.txt` with project summary, page list, key facts, features, and crawler permissions.
+
+Missing:
+- `## Maintainers` block with GitHub org attribution
+- `## Use Cases` block for disambiguation queries
+- `## Citations` block for ChatGPT knowledge synthesis
+
+### Findings
 
 | # | Issue | Severity |
 |---|-------|----------|
-| G-1 | No `llms.txt` file | HIGH — single highest-leverage missing asset for GEO |
-| G-2 | No AI crawler rules in robots.txt | HIGH — no explicit Allow for GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot |
-| G-3 | FAQ answers too short for AI citation | HIGH — all 9 answers are under 45 words; optimal is 134-167 words |
-| G-4 | No HowTo schema on /download | HIGH — installation steps are perfectly structured but carry no schema |
-| G-5 | No Organization schema | MEDIUM — no entity record for AI models |
-| G-6 | Brand casing inconsistent | MEDIUM — "EhViewer" vs "Ehviewer" vs "Ehviewer-Overhauled" across pages |
-| G-7 | No sitemap with `lastmod` dates | MEDIUM — freshness signals missing for AI crawlers |
+| G-1 | llms.txt missing Maintainers, Use Cases, and Citations blocks | Medium |
+| G-2 | About page has zero citable factual statements — all aspirational prose | High |
+| G-3 | No external entity presence (Wikipedia, YouTube coverage) — largest GEO risk | High |
+| G-4 | FAQ accordion client-side rendering may limit some crawler passage extraction | Medium |
+| G-5 | Brand casing inconsistent: "EhViewer" vs "Ehviewer-Overhauled" across GitHub links | Low |
 
 ### Strengths
 
-- Server-side rendering ensures all content is in initial HTML for AI crawlers
-- SoftwareApplication + FAQPage schemas provide structured data for extraction
-- Download page has version-specific, dated, changelog content with issue numbers — highly citable
-- Privacy policy has clear declarative statements — strong citation candidates
-- Zero third-party scripts means fast, clean page loads for crawlers
+- SSR ensures all content visible to AI crawlers in initial HTML
+- FAQ answers are 100-180 words each — within optimal citation range
+- Download page version/changelog content is highly citable
+- Privacy policy has clear declarative statements
+- SoftwareApplication + FAQPage schemas provide structured extraction paths
 
 ---
 
 ## 7. Images
 
-**Score: 40/100**
+**Score: 45/100**
+
+### Findings
 
 | # | Issue | Severity |
-|---|-------|---------|
-| I-1 | OG image (`/og-image.png`) doesn't exist | HIGH |
-| I-2 | PhoneMockup loads 8 screenshots eagerly | HIGH |
-| I-3 | Native `<img>` used instead of `next/image` in PhoneMockup, HeroSection, testimonials | MEDIUM |
-| I-4 | No `loading="lazy"` on ~22 below-fold images | MEDIUM |
-| I-5 | No `width`/`height` attributes on decorative images | MEDIUM |
-| I-6 | ProcessSection screenshot not lazy-loaded | LOW |
+|---|-------|----------|
+| I-1 | No og:image defined in layout.tsx metadata — social shares render blank | Critical |
+| I-2 | No `priority` prop on above-fold hero images — LCP degradation | High |
+| I-3 | Hero floating avatars use `loading="lazy"` — correct for decorative below-fold content | Pass |
+| I-4 | Apple touch icon is SVG — some iOS versions don't support SVG apple-touch-icons (should be 180x180 PNG) | Medium |
 
 ### Strengths
 
-- All user-facing images are WebP format
+- All user-facing images in WebP format
 - SVGs used for logo assets (correct choice)
 - Decorative images use `alt=""` per WCAG
-
----
-
-## Prioritized Action Plan
-
-### CRITICAL (Fix Immediately)
-
-| # | Action | Files | Effort | Impact |
-|---|--------|-------|--------|--------|
-| 1 | Create `app/robots.ts` with sitemap reference and `/downloads/` disallow | New file | 15 min | Crawlability |
-| 2 | Create `app/sitemap.ts` with all 6 routes + `lastmod` dates | New file | 15 min | Indexation |
-| 3 | Add security headers in `next.config.ts` (CSP, HSTS, X-Frame-Options, etc.) | `next.config.ts` | 30 min | Security |
-| 4 | Fix or remove the contact form — implement email delivery or replace with direct GitHub link | `app/contact/page.tsx` | 2 hrs | Trust/E-E-A-T |
-
-### HIGH (Fix Within 1 Week)
-
-| # | Action | Files | Effort | Impact |
-|---|--------|-------|--------|--------|
-| 5 | Create `/public/og-image.png` (1200x630) | New file | 1 hr | Social/Discover |
-| 6 | Add H1 to `/download` and `/faq` pages | `app/download/page.tsx`, `app/faq/page.tsx` | 15 min | On-Page SEO |
-| 7 | Replace `<a>` with `<Link>` in Navbar and Footer for internal routes | `Navbar.tsx`, `Footer.tsx` | 20 min | Performance/UX |
-| 8 | Fix SoftwareApplication schema — add `url`, `downloadUrl`, `softwareVersion`, `image`, `datePublished` | `app/page.tsx` | 15 min | Rich Results |
-| 9 | Restrict FAQPage JSON-LD to `/faq` and `/` only | `FAQSection.tsx` or page files | 20 min | Schema Quality |
-| 10 | Add canonical `alternates` to each page's metadata | All `page.tsx` files | 20 min | Indexation |
-| 11 | Create `public/llms.txt` for AI search readiness | New file | 30 min | GEO |
-| 12 | Add explicit AI crawler Allow rules to robots.txt | `app/robots.ts` | 10 min | GEO |
-| 13 | Expand FAQ answers to 134-167 words each | `components/faqData.ts` | 2-3 hrs | GEO/Content |
-| 14 | Replace fabricated testimonials with verifiable reviews | `AnimatedTestimonialSection.tsx` | 2 hrs | E-E-A-T |
-
-### MEDIUM (Fix Within 1 Month)
-
-| # | Action | Files | Effort | Impact |
-|---|--------|-------|--------|--------|
-| 15 | Expand `/about` page — add contributors, GitHub stats, project timeline | `app/about/page.tsx` | 3 hrs | E-E-A-T/Content |
-| 16 | Add WebSite schema to `app/layout.tsx` | `app/layout.tsx` | 15 min | Rich Results |
-| 17 | Add Organization schema to `/about` | `app/about/page.tsx` | 15 min | Entity/KP |
-| 18 | Add BreadcrumbList schema to all inner pages | All inner `page.tsx` | 30 min | Rich Results |
-| 19 | Add HowTo schema to `/download` for installation guides | `app/download/page.tsx` | 30 min | Rich Results |
-| 20 | Replace `motion` library with CSS-only scroll animation | `container-scroll-animation.tsx` | 2 hrs | Performance |
-| 21 | Add `optimizePackageImports: ["@tabler/icons-react"]` to next.config | `next.config.ts` | 2 min | Bundle Size |
-| 22 | Remove `background-attachment: fixed` from body | `app/globals.css` | 5 min | Mobile INP |
-| 23 | Add `loading="lazy"` to below-fold images; `fetchpriority="high"` to LCP image | Multiple components | 30 min | LCP/Performance |
-| 24 | Add `width`/`height` attributes to all `<img>` elements | Multiple components | 20 min | CLS |
-| 25 | Surface support@ehviewer.app on `/contact` page | `app/contact/page.tsx` | 5 min | Trust |
-| 26 | Remove or clearly label the iOS installation guide as "coming soon" | `DownloadDetails.tsx` | 10 min | Accuracy |
-| 27 | Move FAQ JSON-LD to server component (not `'use client'`) | `FAQSection.tsx` | 30 min | Crawler reliability |
-
-### LOW (Backlog)
-
-| # | Action | Files | Effort | Impact |
-|---|--------|-------|--------|--------|
-| 28 | Remove `keywords` meta tag from layout | `app/layout.tsx` | 2 min | Cleanup |
-| 29 | Fix grammar error on /about ("is open source means") | `app/about/page.tsx` | 2 min | Trust |
-| 30 | Fix Footer "Source Code" link to GitHub | `Footer.tsx` | 2 min | Accuracy |
-| 31 | Trim meta descriptions on `/` (169 chars) and `/download` (196 chars) | `app/page.tsx`, `app/download/page.tsx` | 5 min | SERP display |
-| 32 | Add inline links from FAQ answers to /download | `faqData.ts` | 10 min | Internal linking |
-| 33 | Add IndexNow key and deployment webhook | New files + deploy config | 30 min | Bing indexation |
-| 34 | Substantiate or remove 4.8/9400 AggregateRating | `app/page.tsx` | 10 min | Schema trust |
-| 35 | Add ContactPage schema to `/contact` | `app/contact/page.tsx` | 10 min | Semantic typing |
+- `next/image` used in HeroSection and ProcessSection with proper `sizes` attribute
 
 ---
 
 ## What's Already Well-Implemented
 
-- **Zero third-party scripts** — no analytics, tag managers, ads, or chat widgets. Cleanest performance profile possible.
-- **All images in WebP format** — excellent format choice for modern browsers.
-- **Server-side rendering** via Next.js App Router — all content visible to crawlers in initial HTML.
-- **Geist font** loaded with `display: "swap"`, `preload: true`, `adjustFontFallback: true` — best-practice font loading.
-- **FAQ accordion** keeps answers in DOM when closed — crawlers can read all content.
-- **`prefers-reduced-motion`** media query suppresses all animations — accessibility and CLS win.
-- **Unique title tags and meta descriptions** on every page with consistent `%s | EhViewer` template.
-- **`rel="noopener noreferrer"`** on all external links.
-- **Privacy policy** is thorough, dated, and includes a direct contact email.
-- **Download page** has excellent technical specificity — version numbers, architecture variants, changelog with issue references.
+- **Zero third-party scripts** — cleanest possible performance profile
+- **All images in WebP format** — modern, optimized format
+- **Server-side rendering** via Next.js App Router — all content visible to crawlers
+- **Geist font** with `display: swap`, `preload: true`, `adjustFontFallback: true` — best-practice loading
+- **Security headers** — comprehensive set covering HSTS, CSP, clickjacking, MIME sniffing
+- **robots.ts** — proper rules with AI crawler permissions and sitemap reference
+- **sitemap.ts** — all 6 pages included with appropriate priorities
+- **Canonical URLs** on every page via `alternates.canonical`
+- **llms.txt** — present with project summary and key facts for AI systems
+- **Contact form** functional via Resend email service
+- **FAQ content** — 8 detailed, technically accurate answers (100-180 words each)
+- **Privacy policy** — thorough, dated, 10 numbered sections with contact info
+- **Download page** — version-specific detail with changelogs, architecture variants, and install guides
+- **Unique title tags and meta descriptions** on every page with `%s | EhViewer` template
+- **`rel="noopener noreferrer"`** on all external links
 
 ---
 
-*Report generated by SEO Audit — 5 parallel specialist agents (Technical, Content, Schema, Performance, GEO)*
+*Report generated June 7, 2026 by SEO Audit — 5 parallel specialist agents (Technical, Content, Schema, Sitemap, GEO)*

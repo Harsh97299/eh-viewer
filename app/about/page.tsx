@@ -10,7 +10,7 @@ export const metadata = {
   title: "About EhViewer — Free Open-Source Manga Reader",
   description:
     "The story behind EhViewer — a free, open-source manga reader built by the community to give fans worldwide a smooth, friendly reading experience.",
-  alternates: { canonical: "https://ehviewer.app/about" },
+  alternates: { canonical: "https://ehviewer.io/about" },
 };
 
 interface Value {
@@ -44,9 +44,22 @@ const values: Value[] = [
   },
 ];
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://ehviewer.io" },
+    { "@type": "ListItem", position: 2, name: "About", item: "https://ehviewer.io/about" },
+  ],
+};
+
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
       <main className="overflow-x-hidden">
         {/* Hero */}
@@ -71,21 +84,34 @@ export default function AboutPage() {
               </h1>
 
               <p className="mt-6 text-text-muted leading-relaxed">
-                The internet is more fun when knowledge is shared. EhViewer
-                exists to give manga fans worldwide a smooth, friendly place to
-                read — clean, fast, and free of the clutter that gets in the way
-                of a good story.
+                EhViewer is a free, open-source manga and anime comic reader for
+                Android, licensed under the GNU General Public License v3
+                (GPLv3). The current release is version 1.14.6, published on
+                December 17, 2025, supporting Android 8.0 and above.
               </p>
               <p className="mt-4 text-text-muted leading-relaxed">
-                EhViewer started as a passion project and grew into a true
-                open-source effort. Every great manga journey begins with a
-                single chapter, and we wanted that first chapter to feel
-                effortless on any phone.
+                EhViewer was originally created by Hippo Seven in 2014 as a
+                lightweight gallery client for Android. In 2020, NekoInverter
+                forked the project to modernize the codebase and add Material
+                Design support. Tarsin Norbin took over maintenance in 2022,
+                introducing Material Design 3 and Dynamic Color theming. Since
+                2023, Foolbar and the Ehviewer-Overhauled community have driven
+                development, adding offline download management, advanced tag
+                search, and configurable multi-source gallery browsing.
               </p>
               <p className="mt-4 text-text-muted leading-relaxed">
-                Today EhViewer is shaped by passionate contributors, translators,
-                and maintainers around the world — fans helping fans discover the
-                next series worth staying up for.
+                Today the project is maintained by the{" "}
+                <a
+                  href="https://github.com/Ehviewer-Overhauled/Ehviewer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue hover:underline"
+                >
+                  Ehviewer-Overhauled
+                </a>{" "}
+                GitHub organization. Contributors, translators, and testers from
+                around the world keep EhViewer growing — with no ads, no
+                tracking, and no cost to readers.
               </p>
             </AnimateIn>
 
@@ -150,6 +176,48 @@ export default function AboutPage() {
                     <p className="text-[14px] text-text-muted leading-relaxed">
                       {value.description}
                     </p>
+                  </div>
+                </AnimateIn>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Project Timeline */}
+        <section className="px-6 py-24 relative overflow-hidden">
+          <div className="absolute -top-20 left-1/4 w-96 h-96 rounded-full bg-yellow/10 blur-[130px] pointer-events-none" />
+
+          <div className="max-w-6xl mx-auto relative z-10">
+            <AnimateIn className="text-center max-w-2xl mx-auto">
+              <p className="text-sm font-semibold text-blue tracking-[0.12em] uppercase mb-4">
+                Project Timeline
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                How EhViewer evolved
+              </h2>
+            </AnimateIn>
+
+            <div className="mt-14 max-w-2xl mx-auto space-y-8">
+              {[
+                { year: "2014", title: "EhViewer created", desc: "Hippo Seven builds the original EhViewer as a lightweight Android gallery client." },
+                { year: "2020", title: "NekoInverter fork", desc: "NekoInverter forks the project to modernize the codebase and add Material Design support." },
+                { year: "2022", title: "Material Design 3", desc: "Tarsin Norbin introduces Material Design 3, Dynamic Color theming, and improved performance." },
+                { year: "2023", title: "Ehviewer-Overhauled", desc: "Foolbar and the community take over. Offline downloads, advanced tag search, and multi-source browsing added." },
+                { year: "2025", title: "Version 1.14.6", desc: "Latest stable release (December 17, 2025) with support for Android 8.0+ and Marshmallow 6.0+ flavors." },
+              ].map((item, i) => (
+                <AnimateIn key={item.year} direction="left" delay={i * 80}>
+                  <div className="flex gap-5">
+                    <div className="shrink-0 w-16 text-right">
+                      <span className="text-sm font-bold text-blue">{item.year}</span>
+                    </div>
+                    <div className="border-l-2 border-border pl-5 pb-2">
+                      <h3 className="text-[16px] font-bold text-foreground tracking-tight">
+                        {item.title}
+                      </h3>
+                      <p className="text-[14px] text-text-muted leading-relaxed mt-1">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
                 </AnimateIn>
               ))}

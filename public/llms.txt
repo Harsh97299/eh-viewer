@@ -4,12 +4,12 @@
 
 ## Pages
 
-- [Home](https://ehviewer.app/): Overview of EhViewer features, download links, and FAQ highlights.
-- [Download](https://ehviewer.app/download): APK downloads for EhViewer 1.14.6 — all flavors (Default, Marshmallow), architectures (arm64-v8a, armeabi-v7a, x86_64, universal), debug symbols, and source archives. Released December 17, 2025.
-- [About](https://ehviewer.app/about): Project background, values, and community information.
-- [FAQ](https://ehviewer.app/faq): Answers to common questions about installation, offline reading, search, privacy, and legality.
-- [Contact](https://ehviewer.app/contact): Contact form and links to GitHub Issues and Discussions.
-- [Privacy Policy](https://ehviewer.app/privacy-policy): Full privacy policy — no personal data collected, no ads, no trackers.
+- [Home](https://ehviewer.io/): Overview of EhViewer features, download links, and FAQ highlights.
+- [Download](https://ehviewer.io/download): APK downloads for EhViewer 1.14.6 — all flavors (Default, Marshmallow), architectures (arm64-v8a, armeabi-v7a, x86_64, universal), debug symbols, and source archives. Released December 17, 2025.
+- [About](https://ehviewer.io/about): Project background, values, and community information.
+- [FAQ](https://ehviewer.io/faq): Answers to common questions about installation, offline reading, search, privacy, and legality.
+- [Contact](https://ehviewer.io/contact): Contact form and links to GitHub Issues and Discussions.
+- [Privacy Policy](https://ehviewer.io/privacy-policy): Full privacy policy — no personal data collected, no ads, no trackers.
 
 ## Key Facts
 
@@ -17,9 +17,9 @@
 - **License:** GNU General Public License v3 (GPLv3)
 - **Platforms:** Android 8.0+ (Default flavor); Android 6.0+ (Marshmallow flavor)
 - **Price:** Free
-- **Icon:** https://ehviewer.app/launcher_icon-web.svg
+- **Icon:** https://ehviewer.io/launcher_icon-web.svg
 - **Source code:** https://github.com/Ehviewer-Overhauled/Ehviewer
-- **Contact:** support@ehviewer.app
+- **Contact:** support@ehviewer.io
 
 ## Features
 
@@ -30,6 +30,22 @@
 - Zoom reading, custom themes (dark mode, sepia), adjustable brightness
 - Privacy-first: no account, no ads, no analytics, all data stored locally on device
 - Open source: full source code auditable on GitHub
+
+## Maintainers
+
+Maintained by the EhViewer community via the Ehviewer-Overhauled GitHub organization (https://github.com/Ehviewer-Overhauled). Originally created by Hippo Seven (2014), continued by NekoInverter (2020), Tarsin Norbin (2022), and Foolbar (2023).
+
+## Use Cases
+
+- Reading manga and anime comics on Android devices
+- Offline manga reading without internet access
+- Privacy-first browsing without accounts, ads, or tracking
+- Searching manga by tag, artist, genre, or keyword
+- Organizing and managing a personal manga library on-device
+
+## What EhViewer Is Not
+
+EhViewer does not host, store, or distribute any content. It is a client application that connects to user-configured gallery sources. EhViewer is not affiliated with any content platform.
 
 ## AI Crawler Permissions
 

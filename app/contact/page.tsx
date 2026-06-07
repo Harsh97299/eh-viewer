@@ -8,12 +8,12 @@ export const metadata = {
   title: "Contact EhViewer — Reach the Team & Community",
   description:
     "Get in touch with the EhViewer project — send a message or reach the maintainers and community on GitHub.",
-  alternates: { canonical: "https://ehviewer.app/contact" },
+  alternates: { canonical: "https://ehviewer.io/contact" },
 };
 
 // Inline server action keeps this page server-rendered. Delivers the message via
 // Resend. Requires RESEND_API_KEY and CONTACT_TO_EMAIL env vars; the sending
-// domain (ehviewer.app) must be verified in Resend, otherwise use the
+// domain (contact.ehviewer.io) must be verified in Resend, otherwise use the
 // onboarding@resend.dev sandbox address as the `from`.
 async function submitContact(formData: FormData) {
   "use server";
@@ -31,7 +31,7 @@ async function submitContact(formData: FormData) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     const { error } = await resend.emails.send({
-      from: "EhViewer Contact <contact@ehviewer.app>",
+      from: "EhViewer Contact <noreply@contact.ehviewer.io>",
       to: process.env.CONTACT_TO_EMAIL!,
       replyTo: email,
       subject: `[Contact] ${subject}`,
@@ -78,6 +78,15 @@ const githubCards = [
   },
 ];
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://ehviewer.io" },
+    { "@type": "ListItem", position: 2, name: "Contact", item: "https://ehviewer.io/contact" },
+  ],
+};
+
 export default async function ContactPage({
   searchParams,
 }: {
@@ -87,6 +96,10 @@ export default async function ContactPage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
       <main className="overflow-x-hidden">
         {/* Hero + form */}
@@ -116,10 +129,10 @@ export default async function ContactPage({
               <p className="mt-3 text-text-muted leading-relaxed max-w-xl">
                 You can also email us directly at{" "}
                 <a
-                  href="mailto:support@ehviewer.app"
+                  href="mailto:support@ehviewer.io"
                   className="text-blue hover:underline"
                 >
-                  support@ehviewer.app
+                  support@ehviewer.io
                 </a>
                 .
               </p>

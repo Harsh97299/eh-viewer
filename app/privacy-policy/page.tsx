@@ -6,13 +6,26 @@ export const metadata = {
   title: "EhViewer Privacy Policy — Privacy-First Manga Reader",
   description:
     "Privacy policy for EhViewer — a free, open-source, privacy-first manga reader for Android. No accounts, no ads, no tracking.",
-  alternates: { canonical: "https://ehviewer.app/privacy-policy" },
+  alternates: { canonical: "https://ehviewer.io/privacy-policy" },
 };
 
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://ehviewer.io" },
+    { "@type": "ListItem", position: 2, name: "Privacy Policy", item: "https://ehviewer.io/privacy-policy" },
+  ],
+};
 
 export default function PrivacyPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
       <main className="min-h-screen bg-white text-[#202124] px-6 py-24">
         <div className="max-w-3xl mx-auto">
@@ -27,10 +40,10 @@ export default function PrivacyPage() {
             describes what limited information is collected when you use the
             EhViewer app or the{" "}
             <a
-              href="https://ehviewer.app"
+              href="https://ehviewer.io"
               className="text-[#4586F3] hover:underline"
             >
-              ehviewer.app
+              ehviewer.io
             </a>{" "}
             website.
           </p>
@@ -174,10 +187,10 @@ export default function PrivacyPage() {
             </Link>{" "}
             or email{" "}
             <a
-              href="mailto:support@ehviewer.app"
+              href="mailto:support@ehviewer.io"
               className="text-[#4586F3] hover:underline"
             >
-              support@ehviewer.app
+              support@ehviewer.io
             </a>
             .
           </p>
