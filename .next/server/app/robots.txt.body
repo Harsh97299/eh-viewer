@@ -1,0 +1,20 @@
+User-Agent: *
+Allow: /
+Disallow: /downloads/
+
+User-Agent: GPTBot
+Allow: /
+
+User-Agent: OAI-SearchBot
+Allow: /
+
+User-Agent: ClaudeBot
+Allow: /
+
+User-Agent: PerplexityBot
+Allow: /
+
+User-Agent: CCBot
+Disallow: /
+
+Sitemap: https://ehviewer.io/sitemap.xml

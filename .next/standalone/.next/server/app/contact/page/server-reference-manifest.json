@@ -1,0 +1,17 @@
+{
+  "node": {
+    "408f09a087caf7e24af04b2ee33c85fba3adb1536c": {
+      "workers": {
+        "app/contact/page": {
+          "moduleId": 4610,
+          "async": false,
+          "exportedName": "$$RSC_SERVER_ACTION_0",
+          "filename": "app/contact/page.tsx"
+        }
+      },
+      "exportedName": "$$RSC_SERVER_ACTION_0",
+      "filename": "app/contact/page.tsx"
+    }
+  },
+  "edge": {}
+}
